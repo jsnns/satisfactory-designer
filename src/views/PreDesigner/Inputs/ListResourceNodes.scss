@@ -1,0 +1,15 @@
+.ListResourceNodes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.ResourceNodeItem {
+  position: relative;
+
+  button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+  }
+}

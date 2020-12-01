@@ -1,0 +1,37 @@
+$spacing: 8px;
+
+.Designer-- {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  flex-direction: row;
+  padding: $spacing;
+  box-sizing: border-box;
+
+  .Center-- {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Inputs-Container,
+  .Outputs-Container,
+  .Preview-Container,
+  .DesignConfig-Container {
+    background-color: #282829;
+    border-radius: 5px;
+  }
+
+  .Inputs-Container,
+  .Outputs-Container,
+  .Center-- {
+    display: flex;
+    min-height: 10px;
+    width: 100%;
+    margin: $spacing;
+  }
+
+  .Preview-Container,
+  .DesignConfig-Container {
+    height: 100%;
+  }
+}
