@@ -1,0 +1,20 @@
+.RawInputTable {
+  color: white;
+
+  .Th {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  Table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .TRow,
+  .THead {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

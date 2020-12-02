@@ -1,0 +1,32 @@
+@import "../../../../colors.scss";
+@import "../../../../styles.scss";
+
+.Node {
+  .ResourceType {
+    font-weight: bolder;
+    font-size: 1.2em;
+  }
+
+  .NodeCounts {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    justify-content: space-between;
+
+    .Count {
+      display: flex;
+      justify-items: center;
+      align-items: center;
+
+      .Buttons {
+        margin-left: 4px;
+
+        button {
+          @include primary-button;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}

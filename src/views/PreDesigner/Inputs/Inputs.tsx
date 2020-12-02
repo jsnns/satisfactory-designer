@@ -1,14 +1,25 @@
 import React from "react";
-import { AddResourceNode } from "./AddResourceNode";
+import { Spacer } from "../../../components/Spacer";
 import "./Inputs.scss";
-import { ListResourceNodes } from "./ListResourceNodes";
+import { MinerSpeed } from "./MinerType/MinerType";
+import { NodeList } from "./NodeInputs/NodeList";
+import { Overclock } from "./Overclock/Overclock";
+import { RawInputTable } from "./RawInputTable/RawInputTable";
 
 export const Inputs: React.FC = () => {
   return (
     <div className="Inputs">
       <h2>Factory Inputs</h2>
-      <AddResourceNode />
-      <ListResourceNodes />
+      <Spacer size="medium" />
+      <div className="Body">
+        <NodeList />
+        <Spacer size="medium" />
+        <MinerSpeed />
+        <Spacer size="medium" />
+        <Overclock />
+        <Spacer size="large" />
+        <RawInputTable />
+      </div>
     </div>
   );
 };

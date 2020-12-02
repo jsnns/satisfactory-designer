@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import "../node_modules/normalize.css/normalize.css";
 import "./App.css";
+import "./colors.scss";
 import { Designer } from "./views/PreDesigner/Designer";
 
 function App() {
