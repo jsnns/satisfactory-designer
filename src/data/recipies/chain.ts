@@ -14,8 +14,14 @@ export const getRecipeChain = (
 ): RecipeChain => {
   if (isResourceNodeType(unit.part)) {
     return {
-      part: unit.part,
-      perMin: requriedOutput,
+      recipe: {
+        ...recipeFor[unit.part],
+        output: {
+          part: unit.part,
+          perMin: requriedOutput,
+        },
+      },
+      isRaw: true,
       outputScalar: 1,
     };
   }
@@ -24,8 +30,8 @@ export const getRecipeChain = (
   const outputScalar = requriedOutput / recipe.output.perMin;
 
   return {
-    part: unit.part,
-    perMin: Math.max(recipe.output.perMin * outputScalar),
+    recipe,
+    isRaw: false,
     outputScalar,
     nexts: recipe.inputs.map((unit) => {
       return getRecipeChain(unit, unit.perMin * outputScalar, altRecipes);

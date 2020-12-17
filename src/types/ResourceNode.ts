@@ -3,6 +3,9 @@ export const RESOURCE_NODE_TYPE = [
   "iron",
   "limestone",
   "coal",
+  "oil",
+  "caterium",
+  "water",
 ] as const;
 
 export const isResourceNodeType = (a: any): a is ResourceNodeType =>

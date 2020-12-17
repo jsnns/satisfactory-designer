@@ -27,7 +27,20 @@ export const Part: React.FC<Props> = ({ type }) => {
         <input
           className="TargetOutput"
           value={targetOutput}
-          onChange={(e) => setTargetOutput(Number(e.target.value))}
+          onChange={(e) => {
+            let textValue = e.target.value;
+
+            if (textValue.endsWith(".")) {
+              return;
+            }
+
+            const value = Number(textValue);
+
+            if (isNaN(value)) {
+              return;
+            }
+            setTargetOutput(value);
+          }}
         />
       </div>
     </div>
