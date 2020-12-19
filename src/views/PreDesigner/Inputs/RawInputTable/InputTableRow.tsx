@@ -13,7 +13,7 @@ interface Props {
 export const InputTableRow: React.FC<Props> = ({ type }) => {
   const rawInputTotal = useRecoilValue(totalRawInput(type));
 
-  if (rawInputTotal < 1) return null;
+  if (rawInputTotal === 0) return null;
 
   return (
     <div className="TRow">

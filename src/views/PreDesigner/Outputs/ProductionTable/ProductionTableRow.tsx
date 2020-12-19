@@ -5,7 +5,7 @@ import { roundPerMin } from "../../../../data/round";
 import { currentModal } from "../../../../state/modal";
 import { selectedRecipe } from "../../../../state/recipe";
 import { RecipePart, recipePartReadable } from "../../../../types/Recipe";
-import { SelectRecipeModal } from "../SelectRecipeModal/SelectRecipeModal";
+import { SelectRecipeModal } from "../../DesignConfiguration/SelectRecipeModal/SelectRecipeModal";
 
 interface Props {
   part: RecipePart;

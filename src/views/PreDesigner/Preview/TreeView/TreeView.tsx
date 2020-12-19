@@ -34,7 +34,7 @@ const Recipe: React.FC<RecipeProps> = ({ chain, level = 0 }) => {
 export const TreeView: React.FC<Props> = ({ type }) => {
   const chain = useRecoilValue(recipeChain(type));
 
-  if (chain.outputScalar === 0) return null;
+  if (chain.machinesNeeded === 0) return null;
 
   return (
     <div>

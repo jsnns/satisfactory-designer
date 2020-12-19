@@ -6,9 +6,9 @@ export const DescribeRecipe: React.FC<{ chain: RecipeChain }> = ({ chain }) => {
   return (
     <div>
       {chain.recipe.output.part}{" "}
-      {roundPerMin(chain.recipe.output.perMin * chain.outputScalar)}/min:{" "}
-      {Math.ceil(chain.outputScalar)} {chain.recipe.machine} @{" "}
-      {Math.ceil((chain.outputScalar * 100) / Math.ceil(chain.outputScalar))}%
+      {roundPerMin(chain.recipe.output.perMin * chain.machinesNeeded)}/min:{" "}
+      {Math.ceil(chain.machinesNeeded)} {chain.recipe.machine} @{" "}
+      {Math.ceil((chain.machinesNeeded * 100) / Math.ceil(chain.machinesNeeded))}%
     </div>
   );
 };

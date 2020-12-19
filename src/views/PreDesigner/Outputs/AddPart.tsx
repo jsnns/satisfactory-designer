@@ -22,6 +22,7 @@ export const AddPart: React.FC<Props> = () => {
       }))}
       maxDropdownHeight={300}
       onSelectionChange={addPart}
+      label="Output Parts"
     />
   );
 };

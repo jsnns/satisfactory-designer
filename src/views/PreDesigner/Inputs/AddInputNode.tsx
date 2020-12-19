@@ -19,6 +19,7 @@ export const AddInputNode: React.FC<Props> = () => {
 
   return (
     <ManySelect
+      label="Factory Inputs"
       selected={enabledNodes}
       options={RESOURCE_NODE.map((nodeType) => ({
         label: resourceNodeTypeReadable[nodeType],

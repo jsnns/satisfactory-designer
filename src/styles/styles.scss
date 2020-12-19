@@ -1,10 +1,10 @@
 @mixin primary-button {
   background-color: $orange;
   border: none;
-  border-radius: 3px;
   color: white;
 
   &:disabled {
-    background-color: desaturate(darken($orange, 10), 10);
+    background-color: $gray500;
+    opacity: 0.3;
   }
 }

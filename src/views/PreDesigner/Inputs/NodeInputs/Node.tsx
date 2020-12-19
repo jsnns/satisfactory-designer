@@ -1,8 +1,11 @@
 import React from "react";
 import { useRecoilState } from "recoil";
+import { Spacer } from "../../../../library/Spacer";
 import { selectedInputNodes } from "../../../../state/input";
 import {
+  PURITY,
   Purity,
+  purityReadbable,
   ResourceNode,
   resourceNodeTypeReadable,
 } from "../../../../types/ResourceNode";
@@ -12,10 +15,30 @@ interface Props {
   type: ResourceNode;
 }
 
+export const Count: React.FC<{
+  purity: Purity;
+  count: number;
+  plus: () => void;
+  minus: () => void;
+}> = ({ purity, count, plus, minus }) => {
+  return (
+    <div className="Count">
+      {purityReadbable[purity]}
+      <div className="Buttons">
+        <button onClick={minus} disabled={count === 0}>
+          -
+        </button>
+        <label>{count}</label>
+        <button onClick={plus}>+</button>
+      </div>
+    </div>
+  );
+};
+
 export const Node: React.FC<Props> = ({ type }) => {
   const [nodeCount, setNodeCount] = useRecoilState(selectedInputNodes(type));
 
-  const add = (purity: Purity, change: number) => {
+  const add = (purity: Purity, change: number) => () => {
     const newCount = Math.max(nodeCount[purity] + change, 0);
     setNodeCount({ ...nodeCount, [purity]: newCount });
   };
@@ -25,43 +48,16 @@ export const Node: React.FC<Props> = ({ type }) => {
       <div className="ResourceType">
         <span>{resourceNodeTypeReadable[type]}</span>
       </div>
+      <Spacer size="small" />
       <div className="NodeCounts">
-        <div className="Count">
-          Pure: {nodeCount.pure}
-          <div className="Buttons">
-            <button onClick={() => add("pure", 1)}>+</button>
-            <button
-              onClick={() => add("pure", -1)}
-              disabled={nodeCount.pure === 0}
-            >
-              -
-            </button>
-          </div>
-        </div>
-        <div className="Count">
-          Normal: {nodeCount.normal}
-          <div className="Buttons">
-            <button onClick={() => add("normal", 1)}>+</button>
-            <button
-              onClick={() => add("normal", -1)}
-              disabled={nodeCount.normal === 0}
-            >
-              -
-            </button>
-          </div>
-        </div>
-        <div className="Count">
-          Impure: {nodeCount.impure}
-          <div className="Buttons">
-            <button onClick={() => add("impure", 1)}>+</button>
-            <button
-              onClick={() => add("impure", -1)}
-              disabled={nodeCount.impure === 0}
-            >
-              -
-            </button>
-          </div>
-        </div>
+        {PURITY.map((purity) => (
+          <Count
+            purity={purity}
+            count={nodeCount[purity]}
+            plus={add(purity, 1)}
+            minus={add(purity, -1)}
+          />
+        ))}
       </div>
     </div>
   );

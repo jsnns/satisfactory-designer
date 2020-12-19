@@ -27,7 +27,7 @@
       justify-content: center;
       flex-direction: row;
       background-color: transparent;
-      border: lightgray 2px solid;
+      border: $gray200 2px solid;
 
       &::after {
         content: "";
@@ -52,9 +52,9 @@
       width: 0;
     }
 
-    &.partial .Checkmark::after {
+    &.CheckboxIntermediate .Checkmark::after {
       margin-top: 4px;
-      width: 10px;
+      width: 7px;
       height: 3px;
       background-color: white;
       -webkit-transform: rotate(0deg);
@@ -73,8 +73,8 @@
     }
 
     &:hover input[type="checkbox"] ~ .Checkmark {
-      background-color: lightgray;
-      border-color: lightgray;
+      background-color: $gray200;
+      border-color: $gray200;
     }
 
     & input[type="checkbox"]:checked ~ .Checkmark {
@@ -85,13 +85,13 @@
       color: $orange;
     }
 
-    &.partial input[type="checkbox"]:checked ~ .Checkmark {
-      background-color: $orange;
-      border-color: $orange;
+    &.CheckboxIntermediate input[type="checkbox"]:checked ~ .Checkmark {
+      background-color: $gray200;
+      border-color: $gray200;
     }
 
-    &.partial input[type="checkbox"]:checked ~ .Label {
-      color: $orange;
+    &.CheckboxIntermediate input[type="checkbox"]:checked ~ .Label {
+      color: white;
     }
 
     & input[type="checkbox"]:checked ~ .Checkmark::after {

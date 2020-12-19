@@ -50,3 +50,7 @@ export const partTypeReadable: {
   wire: "Wire",
   iron_rod: "Iron Rod",
 };
+
+export const isPart = (part: any): part is Part => {
+  return PARTS.includes(part);
+};

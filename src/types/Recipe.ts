@@ -28,6 +28,6 @@ export interface Recipe {
 export type RecipeChain = {
   nexts: RecipeChain[];
   isRaw: boolean;
-  outputScalar: number;
+  machinesNeeded: number;
   recipe: Recipe;
 };

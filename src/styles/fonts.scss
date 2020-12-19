@@ -3,3 +3,26 @@
 body {
   font-family: "Open Sans", sans-serif;
 }
+
+.Warn {
+  color: yellow;
+}
+
+.Info {
+  opacity: 0.5;
+  text-transform: uppercase;
+  font-size: 14px;
+  user-select: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  margin: 0;
+  padding: 0;
+}

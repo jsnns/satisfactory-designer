@@ -1,9 +1,5 @@
 import { atom, atomFamily, selector } from "recoil";
-import {
-  getProductionLineItems,
-  getRecipeChain,
-  sumProductionLineItems,
-} from "../data/recipies/chain";
+import { getProductionLineItems, getRecipeChain } from "../data/recipies/chain";
 import { Part } from "../types/Part";
 import { RecipePart } from "../types/Recipe";
 
@@ -17,24 +13,24 @@ export const targetOutput = atomFamily<number, Part>({
   default: 0,
 });
 
-export const totalProduction = selector<{ part: RecipePart; perMin: number }[]>(
-  {
-    key: "TotalProduction",
-    get: ({ get }) => {
-      const endProductProduction = get(enabledOutputParts).map((part) => ({
-        part,
-        perMin: get(targetOutput(part)),
-      }));
+export const productionLineItems = selector<
+  { part: RecipePart; perMin: number }[]
+>({
+  key: "TotalProduction",
+  get: ({ get }) => {
+    const endProductProduction = get(enabledOutputParts).map((part) => ({
+      part,
+      perMin: get(targetOutput(part)),
+    }));
 
-      const productionLineItems: { part: RecipePart; perMin: number }[] = [];
+    const productionLineItems: { part: RecipePart; perMin: number }[] = [];
 
-      endProductProduction.forEach((unit) => {
-        productionLineItems.push(
-          ...getProductionLineItems(getRecipeChain({ get })(unit))
-        );
-      });
+    endProductProduction.forEach((unit) => {
+      productionLineItems.push(
+        ...getProductionLineItems(getRecipeChain({ get })(unit))
+      );
+    });
 
-      return sumProductionLineItems(productionLineItems);
-    },
-  }
-);
+    return productionLineItems;
+  },
+});

@@ -20,8 +20,7 @@ $spacing: 8px;
   .Outputs-Container,
   .Preview-Container,
   .DesignConfig-Container {
-    background-color: $gray800;
-    border-radius: 5px;
+    background-color: rgba($gray800, 0.3);
   }
 
   .Inputs-Container,

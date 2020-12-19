@@ -1,7 +1,9 @@
 import { atom, atomFamily, selectorFamily } from "recoil";
 import { totalResourcesFromNodeCount } from "../data/inputCalculations";
+import { buildProductionLineItemSum } from "../data/recipies/chain";
 import { MinerType, multipleForMinerType } from "../types/Miner";
 import { PurityCount, ResourceNode } from "../types/ResourceNode";
+import { productionLineItems } from "./output";
 
 export const enabledInputNodes = atom<ResourceNode[]>({
   default: [],
@@ -39,5 +41,14 @@ export const totalRawInput = selectorFamily<number, ResourceNode>({
       overclock,
       multipleForMinerType[minerType]
     );
+  },
+});
+
+export const requiredInput = selectorFamily<number, ResourceNode>({
+  key: "RequiredInputValues",
+  get: (nodeType) => ({ get }) => {
+    const sum = buildProductionLineItemSum(get(productionLineItems));
+
+    return sum[nodeType] || 0;
   },
 });

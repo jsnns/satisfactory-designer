@@ -1,0 +1,56 @@
+@import "../../styles/colors.scss";
+
+.NumberInput {
+  background-color: $gray600;
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: center;
+
+  .ActionButtons {
+    button {
+      background-color: rgba($orange, 0.7);
+      border: none;
+      color: white;
+      padding: 4px 10px;
+      font-size: 14px;
+
+      &:not(:first-of-type) {
+        margin-left: 3px;
+      }
+    }
+  }
+
+  .NumberInputBody {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+  }
+
+  input {
+    background-color: $gray600;
+    color: white;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+    border: none;
+    -webkit-appearance: none;
+    outline: none;
+    -moz-appearance: textfield;
+    flex-grow: 1;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  label {
+    font-size: 12px;
+    font-weight: normal;
+    height: 16px;
+    line-height: 16px;
+    opacity: 0.6;
+  }
+}

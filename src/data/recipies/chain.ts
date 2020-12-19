@@ -1,19 +1,27 @@
 import { GetRecoilValue } from "recoil";
+import { baseMachineClock } from "../../state/designConfig";
 import { selectedRecipe } from "../../state/recipe";
 import { PARTS } from "../../types/Part";
 import { RecipeChain, RecipePart, RecipeUnit } from "../../types/Recipe";
 import { isResourceNodeType, RESOURCE_NODE } from "../../types/ResourceNode";
 import { recipeBook } from "./default";
 
-export const sumProductionLineItems = (
+export const buildProductionLineItemSum = (
   productionLineItems: { part: RecipePart; perMin: number }[]
-): { part: RecipePart; perMin: number }[] => {
+): { [key in RecipePart]?: number } => {
   const sum: { [key in RecipePart]?: number } = {};
 
   productionLineItems.forEach(({ part, perMin }) => {
     sum[part] = (sum[part] || 0) + perMin;
   });
 
+  return sum;
+};
+
+export const sumProductionLineItems = (
+  productionLineItems: { part: RecipePart; perMin: number }[]
+): { part: RecipePart; perMin: number }[] => {
+  const sum = buildProductionLineItemSum(productionLineItems);
   const summedProductionLineItems: { part: RecipePart; perMin: number }[] = [];
 
   const addItem = (part: RecipePart) => {
@@ -38,7 +46,7 @@ export const getProductionLineItems = (
 
   productionLineItems.push({
     part: chain.recipe.output.part,
-    perMin: chain.recipe.output.perMin * chain.outputScalar,
+    perMin: chain.recipe.output.perMin * chain.machinesNeeded,
   });
 
   chain.nexts.forEach((nextChain) => {
@@ -61,22 +69,23 @@ export const getRecipeChain = ({ get }: { get: GetRecoilValue }) => (
         },
       },
       isRaw: true,
-      outputScalar: 1,
+      machinesNeeded: 1,
       nexts: [],
     };
   }
 
   const recipe = get(selectedRecipe(unit.part));
-  const outputScalar = unit.perMin / recipe.output.perMin;
+  const machinesNeeded =
+    unit.perMin / get(baseMachineClock(recipe.machine)) / recipe.output.perMin;
 
   return {
     recipe,
     isRaw: false,
-    outputScalar,
+    machinesNeeded,
     nexts: recipe.inputs.map((unit) =>
       getRecipeChain({ get })({
         part: unit.part,
-        perMin: unit.perMin * outputScalar,
+        perMin: unit.perMin * machinesNeeded,
       })
     ),
   };

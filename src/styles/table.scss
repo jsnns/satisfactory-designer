@@ -1,27 +1,13 @@
 @mixin Table {
   table {
     color: white;
+    table-layout: auto;
+    width: 100%;
 
     thead {
       font-weight: bold;
       text-decoration: underline;
-    }
-
-    table {
-      display: flex;
-      flex-direction: column;
-    }
-
-    tr,
-    th {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    td,
-    th {
-      width: 100%;
+      text-align: left;
     }
   }
 }
