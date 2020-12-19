@@ -1,0 +1,40 @@
+@import "../../styles/colors.scss";
+@import "../../styles/zindex.scss";
+
+.ModalContainer {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba($gray900, 0.7);
+  z-index: $z--modal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .Modal {
+    position: relative;
+    min-width: 200px;
+    min-height: 150px;
+    background-color: $gray800;
+    padding: 20px;
+    opacity: 1;
+
+    .ModalHeader {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      button {
+        background-color: transparent;
+        color: white;
+        border: none;
+
+        &:hover {
+          background-color: rgba($gray400, 0.5);
+        }
+      }
+    }
+  }
+}

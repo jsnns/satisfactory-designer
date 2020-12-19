@@ -1,6 +1,7 @@
-import { Recipe } from "../../types/Recipe";
+import { Recipe, RecipePart } from "../../types/Recipe";
 
-export const SolidSteelIngot: Recipe = {
+const SolidSteelIngot: Recipe = {
+  name: "Solid Steel Ingot",
   machine: "foundary",
   inputs: [
     {
@@ -18,7 +19,8 @@ export const SolidSteelIngot: Recipe = {
   },
 };
 
-export const CateriumComputer: Recipe = {
+const CateriumComputer: Recipe = {
+  name: "Caterium Computer",
   machine: "manufacturer",
   inputs: [
     { part: "circut_board", perMin: 26.25 },
@@ -31,7 +33,8 @@ export const CateriumComputer: Recipe = {
   },
 };
 
-export const CateriumCircutBoard: Recipe = {
+const CateriumCircutBoard: Recipe = {
+  name: "Caterium Circut Board",
   machine: "assembler",
   inputs: [
     { part: "plastic", perMin: 12.5 },
@@ -43,7 +46,8 @@ export const CateriumCircutBoard: Recipe = {
   },
 };
 
-export const FusedQuickwire: Recipe = {
+const FusedQuickwire: Recipe = {
+  name: "Fused Quickwire",
   machine: "assembler",
   inputs: [
     { part: "caterium_ingot", perMin: 7.5 },
@@ -55,7 +59,8 @@ export const FusedQuickwire: Recipe = {
   },
 };
 
-export const PureCateriumIngot: Recipe = {
+const PureCateriumIngot: Recipe = {
+  name: "Pure Caterium",
   machine: "refinery",
   inputs: [
     { part: "caterium", perMin: 24 },
@@ -67,7 +72,8 @@ export const PureCateriumIngot: Recipe = {
   },
 };
 
-export const CopperAlloyIngot: Recipe = {
+const CopperAlloyIngot: Recipe = {
+  name: "Copper Alloy Ingot",
   machine: "foundary",
   inputs: [
     { part: "copper", perMin: 50 },
@@ -79,7 +85,8 @@ export const CopperAlloyIngot: Recipe = {
   },
 };
 
-export const SteelScrew: Recipe = {
+const SteelScrew: Recipe = {
+  name: "Steel Screw",
   machine: "constructor",
   inputs: [
     {
@@ -91,4 +98,14 @@ export const SteelScrew: Recipe = {
     part: "screw",
     perMin: 260,
   },
+};
+
+export const altRecipesFor: { [key in RecipePart]?: Recipe[] } = {
+  screw: [SteelScrew],
+  computer: [CateriumComputer],
+  circut_board: [CateriumCircutBoard],
+  caterium_ingot: [PureCateriumIngot],
+  steel_ingot: [SolidSteelIngot],
+  copper_ingot: [CopperAlloyIngot],
+  quick_wire: [FusedQuickwire],
 };

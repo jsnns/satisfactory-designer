@@ -1,2 +1,16 @@
+@import "../../../../styles/table.scss";
+@import "../../../../styles/colors.scss";
+
 .ProductionTable {
+  @include Table;
+
+  table {
+    width: 100%;
+  }
+
+  .Link {
+    text-decoration: underline;
+    color: $orange;
+    cursor: pointer;
+  }
 }

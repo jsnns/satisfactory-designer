@@ -2,10 +2,10 @@ import { atomFamily, selectorFamily } from "recoil";
 import { getRecipeChain } from "../data/recipies/chain";
 import { recipeBook } from "../data/recipies/default";
 import { Part } from "../types/Part";
-import { Recipe, RecipeChain } from "../types/Recipe";
+import { Recipe, RecipeChain, RecipePart } from "../types/Recipe";
 import { targetOutput } from "./output";
 
-export const selectedRecipe = atomFamily<Recipe, Part>({
+export const selectedRecipe = atomFamily<Recipe, RecipePart>({
   default: (parameter) => recipeBook[parameter],
   key: "SelectedRecipe",
 });

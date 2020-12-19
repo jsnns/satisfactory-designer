@@ -1,0 +1,27 @@
+@mixin Table {
+  table {
+    color: white;
+
+    thead {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    table {
+      display: flex;
+      flex-direction: column;
+    }
+
+    tr,
+    th {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    td,
+    th {
+      width: 100%;
+    }
+  }
+}

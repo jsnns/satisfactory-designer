@@ -9,7 +9,7 @@ export const DesignConfiguration: React.FC<Props> = () => {
   return (
     <div className="DesignConfiguration">
       <h2>Design Configuration</h2>
-      <Spacer size="small" />
+      <Spacer size="medium" />
       <h3>Production Table</h3>
       <ProductionTable />
     </div>

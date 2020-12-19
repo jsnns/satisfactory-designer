@@ -1,8 +1,17 @@
 import { MachineType } from "./Machine";
-import { Part } from "./Part";
-import { ResourceNode } from "./ResourceNode";
+import { Part, partTypeReadable } from "./Part";
+import {
+  isResourceNodeType,
+  ResourceNode,
+  resourceNodeTypeReadable,
+} from "./ResourceNode";
 
 export type RecipePart = Part | ResourceNode;
+
+export const recipePartReadable = (part: RecipePart): string =>
+  isResourceNodeType(part)
+    ? resourceNodeTypeReadable[part]
+    : partTypeReadable[part];
 
 export interface RecipeUnit {
   part: RecipePart;
@@ -10,6 +19,7 @@ export interface RecipeUnit {
 }
 
 export interface Recipe {
+  name?: string; // used for alt recipes
   machine: MachineType;
   inputs: RecipeUnit[];
   output: RecipeUnit;

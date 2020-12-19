@@ -1,5 +1,8 @@
 import React from "react";
+import { useRecoilState } from "recoil";
+import { Modal } from "../../components/Modal/Modal";
 import { Spacer } from "../../library/Spacer";
+import { currentModal } from "../../state/modal";
 import { DesignConfiguration } from "./DesignConfiguration/DesignConfiguration";
 import "./Designer.scss";
 import { Inputs } from "./Inputs/Inputs";
@@ -9,8 +12,11 @@ import { Preview } from "./Preview/Preview";
 interface Props {}
 
 export const Designer: React.FC<Props> = () => {
+  const [modal, setModal] = useRecoilState(currentModal);
+
   return (
     <div className="Designer--">
+      <Modal modal={modal} dismissModal={() => setModal(null)} />
       <div className="Inputs-Container">
         <Inputs />
       </div>
