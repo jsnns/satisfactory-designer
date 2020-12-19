@@ -2,7 +2,7 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { DescribeRaw } from "../../../../components/Recipe/DescribeRaw";
 import { DescribeRecipe } from "../../../../components/Recipe/DescribeRecipe";
-import { selectedRecipe } from "../../../../state/factoryOutputs";
+import { selectedRecipe } from "../../../../state/output";
 import { Part } from "../../../../types/Part";
 import { RecipeChain } from "../../../../types/Recipe";
 

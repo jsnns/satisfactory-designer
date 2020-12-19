@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { totalRawInput } from "../../../../state/factoryInputs";
+import { totalRawInput } from "../../../../state/input";
 import {
   ResourceNode,
   resourceNodeTypeReadable,

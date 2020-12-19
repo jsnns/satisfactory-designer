@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { targetOutput } from "../../../../state/factoryOutputs";
+import { targetOutput } from "../../../../state/output";
 import { Part, partTypeReadable } from "../../../../types/Part";
 import "./Part.scss";
 

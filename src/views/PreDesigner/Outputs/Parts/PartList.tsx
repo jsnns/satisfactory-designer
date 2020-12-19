@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { Spacer } from "../../../../library/Spacer";
-import { enabledOutputParts } from "../../../../state/factoryOutputs";
+import { enabledOutputParts } from "../../../../state/output";
 import { PartOutputTarget } from "./PartOutputTarget";
 
 export const PartList: React.FC = () => {

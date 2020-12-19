@@ -78,3 +78,17 @@ export const CopperAlloyIngot: Recipe = {
     perMin: 100,
   },
 };
+
+export const SteelScrew: Recipe = {
+  machine: "constructor",
+  inputs: [
+    {
+      part: "steel_beam",
+      perMin: 5,
+    },
+  ],
+  output: {
+    part: "screw",
+    perMin: 260,
+  },
+};

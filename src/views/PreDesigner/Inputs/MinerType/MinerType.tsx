@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { minerTypeState } from "../../../../state/factoryInputs";
+import { minerTypeState } from "../../../../state/input";
 import { MINER_TYPES } from "../../../../types/Miner";
 
 interface Props {}

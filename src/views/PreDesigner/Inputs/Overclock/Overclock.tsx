@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { normalizeOverclockSpeed } from "../../../../data/normalize";
-import { overclockSpeedState } from "../../../../state/factoryInputs";
+import { overclockSpeedState } from "../../../../state/input";
 import "./Overclock.scss";
 
 export const Overclock: React.FC = () => {

@@ -1,20 +1,14 @@
 import { atom, atomFamily, selectorFamily } from "recoil";
 import { totalResourcesFromNodeCount } from "../data/inputCalculations";
 import { MinerType, multipleForMinerType } from "../types/Miner";
-import {
-  PurityCount,
-  ResourceNode,
-} from "../types/ResourceNode";
+import { PurityCount, ResourceNode } from "../types/ResourceNode";
 
 export const enabledInputNodes = atom<ResourceNode[]>({
   default: [],
   key: "EnabledResourceNodes",
 });
 
-export const selectedInputNodes = atomFamily<
-  PurityCount,
-  ResourceNode
->({
+export const selectedInputNodes = atomFamily<PurityCount, ResourceNode>({
   key: "InputNodes",
   default: {
     pure: 0,

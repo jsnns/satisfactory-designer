@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { enabledOutputParts } from "../../../state/factoryOutputs";
+import { enabledOutputParts } from "../../../state/output";
 import "./Preview.scss";
 import { TreeView } from "./TreeView/TreeView";
 

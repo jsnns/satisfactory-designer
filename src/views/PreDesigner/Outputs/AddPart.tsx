@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { ManySelect } from "../../../library";
-import { enabledOutputParts } from "../../../state/factoryOutputs";
+import { enabledOutputParts } from "../../../state/output";
 import { Part, PARTS, partTypeReadable } from "../../../types/Part";
 
 interface Props {}

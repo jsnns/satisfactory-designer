@@ -1,6 +1,7 @@
+import { selectedRecipe } from "../../state/recipe";
 import { RecipeChain, RecipeUnit } from "../../types/Recipe";
 import { isResourceNodeType } from "../../types/ResourceNode";
-import { OptionalRecipeBook, recipeFor } from "./default";
+import { recipeBook } from "./default";
 
 // Represent chain of all recipies including total required at each step
 // steel_beam
@@ -9,13 +10,12 @@ import { OptionalRecipeBook, recipeFor } from "./default";
 //      - coal
 export const getRecipeChain = (
   unit: RecipeUnit,
-  requriedOutput: number,
-  altRecipes: OptionalRecipeBook = {}
+  requriedOutput: number
 ): RecipeChain => {
   if (isResourceNodeType(unit.part)) {
     return {
       recipe: {
-        ...recipeFor[unit.part],
+        ...recipeBook[unit.part],
         output: {
           part: unit.part,
           perMin: requriedOutput,
@@ -26,7 +26,7 @@ export const getRecipeChain = (
     };
   }
 
-  const recipe = altRecipes[unit.part] || recipeFor[unit.part];
+  const recipe = selectedRecipe(unit.part);
   const outputScalar = requriedOutput / recipe.output.perMin;
 
   return {
@@ -34,7 +34,7 @@ export const getRecipeChain = (
     isRaw: false,
     outputScalar,
     nexts: recipe.inputs.map((unit) => {
-      return getRecipeChain(unit, unit.perMin * outputScalar, altRecipes);
+      return getRecipeChain(unit, unit.perMin * outputScalar);
     }),
   };
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { ManySelect } from "../../../library";
-import { enabledInputNodes } from "../../../state/factoryInputs";
+import { enabledInputNodes } from "../../../state/input";
 import {
   ResourceNode,
   resourceNodeTypeReadable,

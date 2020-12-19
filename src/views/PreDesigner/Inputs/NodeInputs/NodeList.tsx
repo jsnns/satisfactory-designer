@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { Spacer } from "../../../../library/Spacer";
-import { enabledInputNodes } from "../../../../state/factoryInputs";
+import { enabledInputNodes } from "../../../../state/input";
 import { Node } from "./Node";
 import "./NodeList.scss";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { selectedInputNodes } from "../../../../state/factoryInputs";
+import { selectedInputNodes } from "../../../../state/input";
 import {
   Purity,
   ResourceNode,

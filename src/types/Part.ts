@@ -17,6 +17,11 @@ export const PARTS = [
   "plastic",
   "caterium_ingot",
   "copper_ingot",
+  "concrete",
+  "cable",
+  "copper_sheet",
+  "wire",
+  "iron_rod",
 ] as const;
 
 export const partTypeReadable: {
@@ -39,4 +44,9 @@ export const partTypeReadable: {
   plastic: "Plastic",
   quick_wire: "Quick Wire",
   rubber: "Rubber",
+  concrete: "Concrete",
+  cable: "Cable",
+  copper_sheet: "Copper Sheet",
+  wire: "Wire",
+  iron_rod: "Iron Rod",
 };
