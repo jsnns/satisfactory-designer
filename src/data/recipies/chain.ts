@@ -1,16 +1,11 @@
+import { GetRecoilValue } from "recoil";
 import { selectedRecipe } from "../../state/recipe";
 import { RecipeChain, RecipeUnit } from "../../types/Recipe";
 import { isResourceNodeType } from "../../types/ResourceNode";
 import { recipeBook } from "./default";
 
-// Represent chain of all recipies including total required at each step
-// steel_beam
-//  - steel_ingot
-//      - iron
-//      - coal
-export const getRecipeChain = (
-  unit: RecipeUnit,
-  requriedOutput: number
+export const getRecipeChain = ({ get }: { get: GetRecoilValue }) => (
+  unit: RecipeUnit
 ): RecipeChain => {
   if (isResourceNodeType(unit.part)) {
     return {
@@ -18,23 +13,27 @@ export const getRecipeChain = (
         ...recipeBook[unit.part],
         output: {
           part: unit.part,
-          perMin: requriedOutput,
+          perMin: unit.perMin,
         },
       },
       isRaw: true,
       outputScalar: 1,
+      nexts: [],
     };
   }
 
-  const recipe = selectedRecipe(unit.part);
-  const outputScalar = requriedOutput / recipe.output.perMin;
+  const recipe = get(selectedRecipe(unit.part));
+  const outputScalar = unit.perMin / recipe.output.perMin;
 
   return {
     recipe,
     isRaw: false,
     outputScalar,
-    nexts: recipe.inputs.map((unit) => {
-      return getRecipeChain(unit, unit.perMin * outputScalar);
-    }),
+    nexts: recipe.inputs.map((unit) =>
+      getRecipeChain({ get })({
+        part: unit.part,
+        perMin: unit.perMin * outputScalar,
+      })
+    ),
   };
 };

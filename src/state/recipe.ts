@@ -13,12 +13,10 @@ export const selectedRecipe = atomFamily<Recipe, Part>({
 export const recipeChain = selectorFamily<RecipeChain, Part>({
   key: "SelectedRecipeChain",
   get: (part) => ({ get }) => {
-    return getRecipeChain(
-      {
-        part: part,
-        perMin: get(targetOutput(part)),
-      },
-      get(targetOutput(part))
-    );
+    const output = get(targetOutput(part));
+    return getRecipeChain({ get })({
+      part: part,
+      perMin: output,
+    });
   },
 });

@@ -2,7 +2,7 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { DescribeRaw } from "../../../../components/Recipe/DescribeRaw";
 import { DescribeRecipe } from "../../../../components/Recipe/DescribeRecipe";
-import { selectedRecipe } from "../../../../state/output";
+import { recipeChain } from "../../../../state/recipe";
 import { Part } from "../../../../types/Part";
 import { RecipeChain } from "../../../../types/Recipe";
 
@@ -24,22 +24,21 @@ const Recipe: React.FC<RecipeProps> = ({ chain, level = 0 }) => {
         <DescribeRecipe chain={chain} />
       )}
 
-      {chain.nexts &&
-        chain.nexts.map((nextChain) => (
-          <Recipe chain={nextChain} level={level + 1} />
-        ))}
+      {chain.nexts.map((nextChain) => (
+        <Recipe chain={nextChain} level={level + 1} />
+      ))}
     </div>
   );
 };
 
 export const TreeView: React.FC<Props> = ({ type }) => {
-  const recipeChain = useRecoilValue(selectedRecipe(type));
+  const chain = useRecoilValue(recipeChain(type));
 
-  if (recipeChain.outputScalar === 0) return null;
+  if (chain.outputScalar === 0) return null;
 
   return (
     <div>
-      <Recipe chain={recipeChain} />
+      <Recipe chain={chain} />
     </div>
   );
 };
