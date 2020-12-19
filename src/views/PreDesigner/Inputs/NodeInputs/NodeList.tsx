@@ -1,13 +1,16 @@
 import React from "react";
-import { Spacer } from "../../../../components/Spacer";
-import { RESOURCE_NODE_TYPE } from "../../../../types/ResourceNode";
+import { useRecoilValue } from "recoil";
+import { Spacer } from "../../../../library/Spacer";
+import { enabledInputNodes } from "../../../../state/factoryInputs";
 import { Node } from "./Node";
 import "./NodeList.scss";
 
 export const NodeList: React.FC = () => {
+  const inputNodes = useRecoilValue(enabledInputNodes);
+
   return (
     <div className="ListResourceNodes">
-      {RESOURCE_NODE_TYPE.map((resourceNodeType, index) => {
+      {inputNodes.map((resourceNodeType, index) => {
         return (
           <React.Fragment key={resourceNodeType}>
             {index !== 0 && <Spacer size="small" />}

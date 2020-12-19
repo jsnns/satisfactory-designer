@@ -1,11 +1,13 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { resourceNodeTypeReadable } from "../../../../constants/readable";
 import { totalRawInput } from "../../../../state/factoryInputs";
-import { ResourceNodeType } from "../../../../types/ResourceNode";
+import {
+  ResourceNode,
+  resourceNodeTypeReadable,
+} from "../../../../types/ResourceNode";
 
 interface Props {
-  type: ResourceNodeType;
+  type: ResourceNode;
 }
 
 export const InputTableRow: React.FC<Props> = ({ type }) => {

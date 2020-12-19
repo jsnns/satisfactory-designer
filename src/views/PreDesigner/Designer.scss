@@ -1,3 +1,4 @@
+@import "../../styles/colors.scss";
 $spacing: 8px;
 
 .Designer-- {
@@ -7,6 +8,7 @@ $spacing: 8px;
   flex-direction: row;
   padding: $spacing;
   box-sizing: border-box;
+  background-color: $gray900;
 
   .Center-- {
     display: flex;
@@ -17,7 +19,7 @@ $spacing: 8px;
   .Outputs-Container,
   .Preview-Container,
   .DesignConfig-Container {
-    background-color: #282829;
+    background-color: $gray800;
     border-radius: 5px;
   }
 

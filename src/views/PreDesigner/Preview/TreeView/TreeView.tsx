@@ -1,38 +1,19 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
+import { DescribeRaw } from "../../../../components/Recipe/DescribeRaw";
+import { DescribeRecipe } from "../../../../components/Recipe/DescribeRecipe";
 import { selectedRecipe } from "../../../../state/factoryOutputs";
-import { PartType } from "../../../../types/Part";
+import { Part } from "../../../../types/Part";
 import { RecipeChain } from "../../../../types/Recipe";
 
 interface Props {
-  type: PartType;
+  type: Part;
 }
 
 interface RecipeProps {
   level?: number;
   chain: RecipeChain;
 }
-
-// {x/min} x {resource_name}: balanced_machines {name} @ balanced_pct
-
-const DescribeRaw: React.FC<{ chain: RecipeChain }> = ({ chain }) => {
-  return (
-    <div>
-      {chain.recipe.output.part} {chain.recipe.output.perMin}/min
-    </div>
-  );
-};
-
-const DescribeRecipe: React.FC<{ chain: RecipeChain }> = ({ chain }) => {
-  // descirbe overproduction
-  return (
-    <div>
-      {chain.recipe.output.part} {chain.recipe.output.perMin}/min:{" "}
-      {Math.ceil(chain.outputScalar)} {chain.recipe.machine} @{" "}
-      {Math.ceil((chain.outputScalar * 100) / Math.ceil(chain.outputScalar))}%
-    </div>
-  );
-};
 
 const Recipe: React.FC<RecipeProps> = ({ chain, level = 0 }) => {
   return (
@@ -53,6 +34,9 @@ const Recipe: React.FC<RecipeProps> = ({ chain, level = 0 }) => {
 
 export const TreeView: React.FC<Props> = ({ type }) => {
   const recipeChain = useRecoilValue(selectedRecipe(type));
+
+  if (recipeChain.outputScalar === 0) return null;
+
   return (
     <div>
       <Recipe chain={recipeChain} />

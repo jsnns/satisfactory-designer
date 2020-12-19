@@ -1,11 +1,11 @@
 import {
-  CountResourceNodePurity,
+  PurityCount,
   multiplierForPurity,
-  ResourceNodePurity,
+  Purity,
 } from "../types/ResourceNode";
 
 export const calclateNodeOutput = (
-  purity: ResourceNodePurity,
+  purity: Purity,
   overclock: number,
   minerMultilier: number
 ): number => {
@@ -16,7 +16,7 @@ export const calclateNodeOutput = (
 };
 
 export const totalResourcesFromNodeCount = (
-  nodeCount: CountResourceNodePurity,
+  nodeCount: PurityCount,
   overclock: number,
   minerMultilier: number
 ): number => {

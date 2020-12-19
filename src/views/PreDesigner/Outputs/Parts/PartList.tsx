@@ -1,16 +1,19 @@
 import React from "react";
-import { Spacer } from "../../../../components/Spacer";
-import { PARTS } from "../../../../types/Part";
-import { Part } from "./Part";
+import { useRecoilValue } from "recoil";
+import { Spacer } from "../../../../library/Spacer";
+import { enabledOutputParts } from "../../../../state/factoryOutputs";
+import { PartOutputTarget } from "./PartOutputTarget";
 
 export const PartList: React.FC = () => {
+  const enabledParts = useRecoilValue(enabledOutputParts);
+
   return (
     <div className="ListResourceNodes">
-      {PARTS.map((partType, index) => {
+      {enabledParts.map((partType, index) => {
         return (
           <React.Fragment key={`output${partType}`}>
             {index !== 0 && <Spacer size="small" />}
-            <Part type={partType} />
+            <PartOutputTarget type={partType} />
           </React.Fragment>
         );
       })}

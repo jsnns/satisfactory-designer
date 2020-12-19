@@ -1,5 +1,5 @@
 import { Recipe, RecipePart } from "../../types/Recipe";
-import { ResourceNodeType } from "../../types/ResourceNode";
+import { ResourceNode } from "../../types/ResourceNode";
 import {
   CateriumCircutBoard,
   CateriumComputer,
@@ -139,7 +139,7 @@ const Rubber: Recipe = {
   },
 };
 
-export const RawResource = (nodeType: ResourceNodeType): Recipe => ({
+export const RawResource = (nodeType: ResourceNode): Recipe => ({
   machine: "miner",
   inputs: [],
   output: {

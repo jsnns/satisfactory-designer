@@ -1,4 +1,4 @@
-export const RESOURCE_NODE_TYPE = [
+export const RESOURCE_NODE = [
   "copper",
   "iron",
   "limestone",
@@ -8,15 +8,27 @@ export const RESOURCE_NODE_TYPE = [
   "water",
 ] as const;
 
-export const isResourceNodeType = (a: any): a is ResourceNodeType =>
-  RESOURCE_NODE_TYPE.includes(a);
+export const isResourceNodeType = (a: any): a is ResourceNode =>
+  RESOURCE_NODE.includes(a);
 
-export type ResourceNodeType = typeof RESOURCE_NODE_TYPE[number];
-export type ResourceNodePurity = "pure" | "normal" | "impure";
-export type CountResourceNodePurity = { [key in ResourceNodePurity]: number };
+export type ResourceNode = typeof RESOURCE_NODE[number];
+export type Purity = "pure" | "normal" | "impure";
+export type PurityCount = { [key in Purity]: number };
 
-export const multiplierForPurity: { [key in ResourceNodePurity]: number } = {
+export const multiplierForPurity: { [key in Purity]: number } = {
   impure: 0.5,
   normal: 1,
   pure: 2,
+};
+
+export const resourceNodeTypeReadable: {
+  [key in ResourceNode]: string;
+} = {
+  copper: "Copper",
+  iron: "Iron",
+  limestone: "Limestone",
+  coal: "Coal",
+  oil: "Oil",
+  caterium: "Caterium",
+  water: "Water",
 };

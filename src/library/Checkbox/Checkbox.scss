@@ -1,0 +1,101 @@
+@import "../../styles/colors.scss";
+
+.CheckboxContinaer {
+  width: fit-content;
+  display: block;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+
+  .Checkbox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+
+    .Label {
+      position: relative;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .Checkmark {
+      height: 15px;
+      width: 15px;
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      background-color: transparent;
+      border: lightgray 2px solid;
+
+      &::after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+    }
+
+    input[type="checkbox"] {
+      cursor: pointer;
+      position: absolute;
+      opacity: 0;
+      height: 0;
+      width: 0;
+    }
+
+    input.CheckboxInput {
+      cursor: pointer;
+      position: absolute;
+      opacity: 0;
+      height: 0;
+      width: 0;
+    }
+
+    &.partial .Checkmark::after {
+      margin-top: 4px;
+      width: 10px;
+      height: 3px;
+      background-color: white;
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+
+    & .Checkmark::after {
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    &:hover input[type="checkbox"] ~ .Checkmark {
+      background-color: lightgray;
+      border-color: lightgray;
+    }
+
+    & input[type="checkbox"]:checked ~ .Checkmark {
+      background-color: $orange;
+      border-color: $orange;
+    }
+    & input[type="checkbox"]:checked ~ .Label {
+      color: $orange;
+    }
+
+    &.partial input[type="checkbox"]:checked ~ .Checkmark {
+      background-color: $orange;
+      border-color: $orange;
+    }
+
+    &.partial input[type="checkbox"]:checked ~ .Label {
+      color: $orange;
+    }
+
+    & input[type="checkbox"]:checked ~ .Checkmark::after {
+      display: block;
+    }
+  }
+}

@@ -1,21 +1,21 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { resourceNodeTypeReadable } from "../../../../constants/readable";
 import { selectedInputNodes } from "../../../../state/factoryInputs";
 import {
-  ResourceNodePurity,
-  ResourceNodeType,
+  Purity,
+  ResourceNode,
+  resourceNodeTypeReadable,
 } from "../../../../types/ResourceNode";
 import "./Node.scss";
 
 interface Props {
-  type: ResourceNodeType;
+  type: ResourceNode;
 }
 
 export const Node: React.FC<Props> = ({ type }) => {
   const [nodeCount, setNodeCount] = useRecoilState(selectedInputNodes(type));
 
-  const add = (purity: ResourceNodePurity, change: number) => {
+  const add = (purity: Purity, change: number) => {
     const newCount = Math.max(nodeCount[purity] + change, 0);
     setNodeCount({ ...nodeCount, [purity]: newCount });
   };

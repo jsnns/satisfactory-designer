@@ -1,5 +1,5 @@
 import React from "react";
-import { RESOURCE_NODE_TYPE } from "../../../../types/ResourceNode";
+import { RESOURCE_NODE } from "../../../../types/ResourceNode";
 import { InputTableRow } from "./InputTableRow";
 import "./RawInputTable.scss";
 
@@ -14,7 +14,7 @@ export const RawInputTable: React.FC<Props> = () => {
           <div className="Th">Input Total</div>
         </div>
         <div className="TBody">
-          {RESOURCE_NODE_TYPE.map((nodeType) => (
+          {RESOURCE_NODE.map((nodeType) => (
             <InputTableRow key={`inputTableRow${nodeType}`} type={nodeType} />
           ))}
         </div>

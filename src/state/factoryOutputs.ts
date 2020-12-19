@@ -1,47 +1,36 @@
-import { atomFamily, selector, selectorFamily } from "recoil";
+import { atom, atomFamily, selectorFamily } from "recoil";
 import { SolidSteelIngot } from "../data/recipies/alt";
 import { getRecipeChain } from "../data/recipies/chain";
 import { OptionalRecipeBook } from "../data/recipies/default";
-import { PARTS, PartType } from "../types/Part";
+import { Part } from "../types/Part";
 import { RecipeChain } from "../types/Recipe";
 
-export const targetOutputs = atomFamily<number, PartType>({
-  key: "TargetOutputs",
+export const enabledOutputParts = atom<Part[]>({
+  default: [],
+  key: "EnabledOutputParts",
+});
+
+export const targetOutput = atomFamily<number, Part>({
+  key: "TargetOutput",
   default: 0,
 });
 
-export const selectedAltRecipes = atomFamily<OptionalRecipeBook, PartType>({
+export const selectedAltRecipes = atomFamily<OptionalRecipeBook, Part>({
   key: "SelectedAltRecipes",
   default: {
     steel_ingot: SolidSteelIngot,
   },
 });
 
-export const selectedOutputs = selector<PartType[]>({
-  key: "SelectedOutputs",
-  get: ({ get }) => {
-    const outputTypes: PartType[] = [];
-
-    PARTS.forEach((partType) => {
-      const targetOuput = get(targetOutputs(partType));
-      if (targetOuput > 0) {
-        outputTypes.push(partType);
-      }
-    });
-
-    return outputTypes;
-  },
-});
-
-export const selectedRecipe = selectorFamily<RecipeChain, PartType>({
+export const selectedRecipe = selectorFamily<RecipeChain, Part>({
   key: "SelectedRecipeChain",
   get: (part) => ({ get }) => {
     return getRecipeChain(
       {
         part: part,
-        perMin: get(targetOutputs(part)),
+        perMin: get(targetOutput(part)),
       },
-      get(targetOutputs(part)),
+      get(targetOutput(part)),
       get(selectedAltRecipes(part))
     );
   },

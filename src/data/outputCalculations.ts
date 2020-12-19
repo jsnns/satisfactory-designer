@@ -1,7 +1,7 @@
 import { RecipeChain } from "../types/Recipe";
-import { ResourceNodeType } from "../types/ResourceNode";
+import { ResourceNode } from "../types/ResourceNode";
 
-type Sum = { [key in ResourceNodeType]: number };
+type Sum = { [key in ResourceNode]: number };
 
 const defaultSum = {
   caterium: 0,

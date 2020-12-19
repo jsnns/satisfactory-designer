@@ -1,5 +1,6 @@
 import React from "react";
-import { Spacer } from "../../../components/Spacer";
+import { Spacer } from "../../../library/Spacer";
+import { AddPart } from "./AddPart";
 import "./Outputs.scss";
 import { PartList } from "./Parts/PartList";
 
@@ -11,6 +12,8 @@ export const Outputs: React.FC<Props> = () => {
       <h2>Factory Outputs</h2>
       <Spacer size="medium" />
       <div className="Body">
+        <AddPart />
+        <Spacer size="large" />
         <PartList />
       </div>
     </div>

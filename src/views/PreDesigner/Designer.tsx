@@ -1,5 +1,5 @@
 import React from "react";
-import { Spacer } from "../../components/Spacer";
+import { Spacer } from "../../library/Spacer";
 import { DesignConfiguration } from "./DesignConfiguration/DesignConfiguration";
 import "./Designer.scss";
 import { Inputs } from "./Inputs/Inputs";

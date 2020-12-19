@@ -1,8 +1,8 @@
 import { MachineType } from "./Machine";
-import { PartType } from "./Part";
-import { ResourceNodeType } from "./ResourceNode";
+import { Part } from "./Part";
+import { ResourceNode } from "./ResourceNode";
 
-export type RecipePart = PartType | ResourceNodeType;
+export type RecipePart = Part | ResourceNode;
 
 export interface RecipeUnit {
   part: RecipePart;

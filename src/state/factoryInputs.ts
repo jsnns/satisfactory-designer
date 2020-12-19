@@ -2,13 +2,18 @@ import { atom, atomFamily, selectorFamily } from "recoil";
 import { totalResourcesFromNodeCount } from "../data/inputCalculations";
 import { MinerType, multipleForMinerType } from "../types/Miner";
 import {
-  CountResourceNodePurity,
-  ResourceNodeType,
+  PurityCount,
+  ResourceNode,
 } from "../types/ResourceNode";
 
+export const enabledInputNodes = atom<ResourceNode[]>({
+  default: [],
+  key: "EnabledResourceNodes",
+});
+
 export const selectedInputNodes = atomFamily<
-  CountResourceNodePurity,
-  ResourceNodeType
+  PurityCount,
+  ResourceNode
 >({
   key: "InputNodes",
   default: {
@@ -28,7 +33,7 @@ export const overclockSpeedState = atom<number>({
   default: 1,
 });
 
-export const totalRawInput = selectorFamily<number, ResourceNodeType>({
+export const totalRawInput = selectorFamily<number, ResourceNode>({
   key: "RawInputValues",
   get: (nodeType) => ({ get }) => {
     const nodeCount = get(selectedInputNodes(nodeType));
