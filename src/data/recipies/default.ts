@@ -201,7 +201,7 @@ export const Computer: Recipe = {
     { part: "screw", perMin: 130 },
   ],
   output: {
-    part: "heavy_modular_frame",
+    part: "computer",
     perMin: 2,
   },
 };

@@ -60,7 +60,7 @@ const FusedQuickwire: Recipe = {
 };
 
 const PureCateriumIngot: Recipe = {
-  name: "Pure Caterium",
+  name: "Pure Caterium Ingot",
   machine: "refinery",
   inputs: [
     { part: "caterium", perMin: 24 },

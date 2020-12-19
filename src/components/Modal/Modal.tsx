@@ -1,4 +1,5 @@
 import React from "react";
+import HandleClickOutside from "../../library/HandleClickOutside";
 import { Spacer } from "../../library/Spacer";
 import { Modal as ModalType } from "../../state/modal";
 import "./Modal.scss";
@@ -15,15 +16,17 @@ export const Modal: React.FC<Props> = ({ modal, dismissModal }) => {
 
   return (
     <div className="ModalContainer">
-      <div className="Modal">
-        <div className="ModalHeader">
-          <h3 className="Title">{modal.title}</h3>
-          <Spacer size="medium" />
-          <button onClick={dismissModal}>X</button>
+      <HandleClickOutside handler={dismissModal}>
+        <div className="Modal">
+          <div className="ModalHeader">
+            <h3 className="Title">{modal.title}</h3>
+            <Spacer size="medium" />
+            <button onClick={dismissModal}>X</button>
+          </div>
+          <Spacer size="small" />
+          <div className="ModalBody">{modal.element}</div>
         </div>
-        <Spacer size="small" />
-        <div className="ModalBody">{modal.element}</div>
-      </div>
+      </HandleClickOutside>
     </div>
   );
 };
