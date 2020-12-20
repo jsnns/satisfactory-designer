@@ -9,6 +9,7 @@
   align-items: center;
 
   h1 {
+    font-size: 1.9rem;
     margin-left: 10px;
   }
 
@@ -40,4 +41,14 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 600px) {
+  .Header {
+    flex-direction: column;
+
+    h1 {
+      margin-top: 10px;
+    }
+  }
 }

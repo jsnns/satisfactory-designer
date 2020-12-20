@@ -1,8 +1,8 @@
 html {
-  box-sizing: border-box;
+  box-sizing: content-box;
 }
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
