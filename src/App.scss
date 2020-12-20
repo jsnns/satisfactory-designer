@@ -1,0 +1,43 @@
+@import "./styles/colors.scss";
+
+.Header {
+  width: 100%;
+  padding: 25px;
+  background-color: $gray800;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  h1 {
+    margin-left: 10px;
+  }
+
+  img {
+    max-height: 40px;
+  }
+}
+
+.Footer {
+  width: 100%;
+  padding: 20px;
+
+  .TM {
+    opacity: 0.7;
+    font-size: 13px;
+    max-width: 700px;
+  }
+}
+
+.App {
+  min-height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

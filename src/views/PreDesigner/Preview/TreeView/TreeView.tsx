@@ -15,19 +15,23 @@ interface RecipeProps {
   chain: RecipeChain;
 }
 
+const colors = ["#FA9549", "#6CA8D4", "#E87D4D", "#86A294", "#BBDE92"];
+
 const Recipe: React.FC<RecipeProps> = ({ chain, level = 0 }) => {
   return (
-    <div style={{ marginLeft: level * 10 }}>
-      {chain.isRaw ? (
-        <DescribeRaw chain={chain} />
-      ) : (
-        <DescribeRecipe chain={chain} />
-      )}
+    <ul>
+      <li style={{ color: colors[level - 1] }}>
+        {chain.isRaw ? (
+          <DescribeRaw chain={chain} />
+        ) : (
+          <DescribeRecipe chain={chain} />
+        )}
+      </li>
 
       {chain.nexts.map((nextChain) => (
         <Recipe chain={nextChain} level={level + 1} />
       ))}
-    </div>
+    </ul>
   );
 };
 

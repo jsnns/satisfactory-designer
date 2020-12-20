@@ -1,4 +1,5 @@
 import React from "react";
+import { WithInfo } from "../../../library/Info/Info";
 import { Spacer } from "../../../library/Spacer";
 import { AddInputNode } from "./AddInputNode";
 import "./Inputs.scss";
@@ -21,7 +22,9 @@ export const Inputs: React.FC = () => {
           <Spacer size="large" />
         </div>
         <div className="MinerConfiguration">
-          <h3>Miner Configuration</h3>
+          <WithInfo infoText="Which miner type do you plan to use?">
+            <h3>Miner Configuration</h3>
+          </WithInfo>
           <Spacer size="small" />
           <MinerSpeed />
           <Spacer size="small" />

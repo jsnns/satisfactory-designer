@@ -2,6 +2,8 @@ import classNames from "classnames";
 import React, { Component } from "react";
 import { Checkbox } from "..";
 import HandleClickOutside from "../HandleClickOutside";
+import { ListenForKeyPress } from "../ListenForKeyPress";
+import { StringInput } from "../NumberInput/NumberInput";
 import "./ManySelect.scss";
 
 interface Option<T> {
@@ -22,10 +24,12 @@ interface ManySelectProps<OptionT> {
   placeholder?: string;
   optionsToShowInLabel?: number;
   defaultOptionLabel?: string;
+  search?: boolean;
 }
 
 interface ManySelectState {
   dropdownOpen: boolean;
+  searchString?: string;
 }
 
 /**
@@ -59,7 +63,7 @@ export class ManySelect<OptionT> extends Component<
 
   handleClickOutside = () => {
     if (this.state.dropdownOpen) {
-      this.setState({ dropdownOpen: false });
+      this.setState({ dropdownOpen: false, searchString: undefined });
     }
   };
 
@@ -125,6 +129,10 @@ export class ManySelect<OptionT> extends Component<
     return this.props.selected.length === this.props.options.length;
   }
 
+  updateSearch = (searchString: string) => {
+    this.setState({ searchString });
+  };
+
   renderOption = (option: Option<OptionT>) => {
     const isSelected = this.isOptionSelected(option.value);
     return (
@@ -145,40 +153,65 @@ export class ManySelect<OptionT> extends Component<
   };
 
   render() {
-    const { options, label, includeSelectAll } = this.props;
+    const { options, label, includeSelectAll, search } = this.props;
 
     return (
       <HandleClickOutside handler={this.handleClickOutside}>
-        <div className="ManySelectContainer">
-          <div onClick={this.toggleDropdown} className="ManySelect">
-            <div className="ManySelectBody">
-              {label && <label>{label}</label>}
-              <p className="SelectedText">{this.selectedTextLabel}</p>
+        <ListenForKeyPress keys={["Escape"]} listener={this.handleClickOutside}>
+          <div className="ManySelectContainer">
+            <div onClick={this.toggleDropdown} className="ManySelect">
+              <div className="ManySelectBody">
+                {label && <label>{label}</label>}
+                <p className="SelectedText">{this.selectedTextLabel}</p>
+              </div>
             </div>
-          </div>
-          {this.state.dropdownOpen && (
-            <div
-              className="ManySelectDropDown"
-              style={{
-                maxHeight: this.props.maxDropdownHeight,
-              }}
-            >
-              {includeSelectAll && (
-                <div className={classNames("Option", "AllOption")}>
-                  <Checkbox
-                    onChange={this.onSelectAll}
-                    checked={this.isAllSelected}
-                    label="All"
-                    partiallySelected={
-                      !this.isAllSelected && this.props.selected.length > 0
+            {this.state.dropdownOpen && (
+              <div
+                className="ManySelectDropDown"
+                style={{
+                  maxHeight: this.props.maxDropdownHeight,
+                }}
+              >
+                {search && (
+                  <div className="Option">
+                    <StringInput
+                      label="Search"
+                      value={this.state.searchString || ""}
+                      onChange={this.updateSearch}
+                      autoFocus
+                    />
+                  </div>
+                )}
+                {includeSelectAll && (
+                  <div className={classNames("Option", "AllOption")}>
+                    <Checkbox
+                      onChange={this.onSelectAll}
+                      checked={this.isAllSelected}
+                      label="All"
+                      partiallySelected={
+                        !this.isAllSelected && this.props.selected.length > 0
+                      }
+                    />
+                  </div>
+                )}
+                {options
+                  .filter((option) => {
+                    if (!search) return true;
+                    if (search && this.state.searchString) {
+                      return (
+                        option.label
+                          .toLowerCase()
+                          .indexOf(this.state.searchString.toLowerCase()) > -1
+                      );
                     }
-                  />
-                </div>
-              )}
-              {options.map(this.renderOption)}
-            </div>
-          )}
-        </div>
+
+                    return true;
+                  })
+                  .map(this.renderOption)}
+              </div>
+            )}
+          </div>
+        </ListenForKeyPress>
       </HandleClickOutside>
     );
   }

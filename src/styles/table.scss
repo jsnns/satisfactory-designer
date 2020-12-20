@@ -1,8 +1,13 @@
+@import "./colors.scss";
 @mixin Table {
   table {
     color: white;
     table-layout: auto;
     width: 100%;
+
+    tr:nth-child(odd) {
+      background-color: $gray800;
+    }
 
     thead {
       font-weight: bold;

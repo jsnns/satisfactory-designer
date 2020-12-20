@@ -15,6 +15,7 @@ export const AddPart: React.FC<Props> = () => {
 
   return (
     <ManySelect
+      search
       selected={enabledParts}
       options={PARTS.map((partType) => ({
         value: partType,

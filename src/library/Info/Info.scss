@@ -1,0 +1,32 @@
+@import "../../styles/colors.scss";
+@import "../../styles/zindex.scss";
+@import "../../styles/shadows.scss";
+
+.WithInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.InfoButton {
+  position: relative;
+
+  svg {
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .InfoPopover {
+    user-select: none;
+    background-color: $gray700;
+    opacity: 1;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: $z--popover;
+    font-size: 14px;
+    box-shadow: $shalow-box;
+  }
+}

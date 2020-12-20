@@ -1,6 +1,7 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { totalRawInput } from "../../../../state/input";
+import { PercentBar } from "../../../../library/PercentBar/PercentBar";
+import { requiredInput, totalRawInput } from "../../../../state/input";
 import {
   ResourceNode,
   resourceNodeTypeReadable,
@@ -12,13 +13,17 @@ interface Props {
 
 export const InputTableRow: React.FC<Props> = ({ type }) => {
   const rawInputTotal = useRecoilValue(totalRawInput(type));
+  const required = useRecoilValue(requiredInput(type));
 
   if (rawInputTotal === 0) return null;
 
   return (
-    <div className="TRow">
-      <div className="Cell">{resourceNodeTypeReadable[type]}</div>
-      <div className="Cell">{rawInputTotal}/min</div>
-    </div>
+    <tr>
+      <td className="Cell">{resourceNodeTypeReadable[type]}</td>
+      <td className="Cell">{rawInputTotal}/min</td>
+      <td className="Cell">
+        <PercentBar max={rawInputTotal} fill={required} />
+      </td>
+    </tr>
   );
 };
