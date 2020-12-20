@@ -1,3 +1,3 @@
 export const roundPerMin = (perMin: number): number => {
-  return Math.ceil(perMin * 100) / 100;
+  return Math.floor(perMin * 100) / 100;
 };

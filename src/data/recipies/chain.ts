@@ -3,8 +3,25 @@ import { baseMachineClock } from "../../state/designConfig";
 import { selectedRecipe } from "../../state/recipe";
 import { PARTS } from "../../types/Part";
 import { RecipeChain, RecipePart, RecipeUnit } from "../../types/Recipe";
-import { isResourceNodeType, RESOURCE_NODE } from "../../types/ResourceNode";
+import {
+  isResourceNodeType,
+  ResourceNode,
+  RESOURCE_NODE,
+} from "../../types/ResourceNode";
 import { recipeBook } from "./default";
+
+export const getRawInputRequired = ({ get }: { get: GetRecoilValue }) => (
+  unit: RecipeUnit
+): { node: ResourceNode; perMin: number }[] => {
+  const lineItems = buildProductionLineItemSum(
+    getProductionLineItems(getRecipeChain({ get })(unit))
+  );
+
+  return RESOURCE_NODE.map((node) => ({
+    node,
+    perMin: lineItems[node] || 0,
+  }));
+};
 
 export const buildProductionLineItemSum = (
   productionLineItems: { part: RecipePart; perMin: number }[]
