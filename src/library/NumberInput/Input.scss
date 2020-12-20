@@ -9,11 +9,15 @@
   justify-content: center;
 
   .ActionButtons {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+
     button {
       background-color: rgba($orange, 0.7);
       border: none;
       color: white;
-      padding: 4px 10px;
+      padding: 4px 7px;
       font-size: 14px;
 
       &:not(:first-of-type) {
