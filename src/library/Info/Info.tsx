@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AiFillInfoCircle } from "react-icons/ai";
 import HandleClickOutside from "../HandleClickOutside";
+import { Spacer } from "../Spacer";
 import "./Info.scss";
 
 interface InfoProps {
@@ -12,7 +13,8 @@ interface InfoProps {
 export const WithInfo: React.FC<InfoProps> = ({ infoText, children }) => {
   return (
     <div className="WithInfo">
-      {children}
+      <div className="Content">{children}</div>
+      <Spacer size="small" />
       <Info infoText={infoText} />
     </div>
   );
