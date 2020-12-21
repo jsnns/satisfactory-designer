@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { normalizeBaseClock } from "../../../../data/normalize";
 import { NumberInput } from "../../../../library/NumberInput/NumberInput";
 import { baseMachineClock } from "../../../../state/designConfig";
-import { MachineType } from "../../../../types/Machine";
+import { machineReadable, MachineType } from "../../../../types/Machine";
 
 interface Props {
   machine: MachineType;
@@ -14,7 +14,7 @@ export const SetBaseMachineClock: React.FC<Props> = ({ machine }) => {
 
   return (
     <NumberInput
-      label={machine}
+      label={`${machineReadable[machine]} Clockspeed`}
       value={baseClock}
       onChange={(newBaseClock) =>
         setBaseClock(normalizeBaseClock(newBaseClock))
