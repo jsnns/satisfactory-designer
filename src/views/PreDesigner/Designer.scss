@@ -33,11 +33,6 @@ $spacing: 5px;
     margin: $spacing;
     flex-grow: 1;
   }
-
-  .Preview-Container,
-  .DesignConfig-Container {
-    height: 100%;
-  }
 }
 
 @media (max-width: 600px) {
