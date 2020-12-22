@@ -15,15 +15,15 @@ export const Preview: React.FC<Props> = () => {
 
   return (
     <div className="Preview">
-      <div className="Head">
-        <h2>Factory Preview</h2>
-        {schematic.enabledOutputParts.length > 0 && (
-          <Link to={`/designer/${btoa(JSON.stringify(schematic))}`}>
-            <p className="Button Primary">Open in Designer</p>
-          </Link>
-        )}
-      </div>
       <div className="Body">
+        <div className="Head">
+          <h2>Factory Preview</h2>
+          {schematic.enabledOutputParts.length > 0 && (
+            <Link to={`/designer/${btoa(JSON.stringify(schematic))}`}>
+              <p className="Button Primary">Edit Schematic</p>
+            </Link>
+          )}
+        </div>
         <Spacer size="medium" />
         {outputParts.map((partType) => (
           <TreeView type={partType} />

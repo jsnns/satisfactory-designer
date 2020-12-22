@@ -1,0 +1,168 @@
+import React, { Component } from "react";
+import { PieceData } from "../../types/Piece";
+import { Piece } from "./Piece/Piece";
+import "./styles/index.scss";
+
+interface Pos {
+  x: number;
+  y: number;
+}
+
+interface DragState {
+  pieceId: string;
+  pieceRect: DOMRect;
+  clickPosition: Pos;
+}
+
+interface Designer3DState {
+  scale: number;
+  pieces: PieceData[];
+  drag: DragState | null;
+}
+
+const INITIAL_STATE: Designer3DState = {
+  scale: 10,
+  pieces: [
+    { type: "Foundation", pos: { x: 10, y: 10 } },
+    { type: "Foundation", pos: { x: 90, y: 90 } },
+    { type: "Foundation", pos: { x: 10, y: 90 } },
+    { type: "Foundation", pos: { x: 90, y: 10 } },
+  ],
+  drag: null,
+};
+
+const getRelativeRect = (parent: DOMRect, child: DOMRect): DOMRect => {
+  return {
+    bottom: child.bottom - parent.bottom,
+    top: child.top - parent.top,
+    left: child.left - parent.left,
+    right: child.right - parent.right,
+    x: child.x - parent.x,
+    y: child.y - parent.y,
+    width: child.width,
+    height: child.height,
+    toJSON: parent.toJSON,
+  };
+};
+
+const pieceIndexFromID = (pieceId: string): number => {
+  return Number(pieceId);
+};
+
+export class Designer3D extends Component<{}, Designer3DState> {
+  constructor(props = {}) {
+    super(props);
+
+    this.state = INITIAL_STATE;
+  }
+
+  // MARK: Lifecycle
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  // MARK: Calculated Properties
+  get clientRect(): DOMRect {
+    return document.getElementById("canvas")!.getBoundingClientRect();
+  }
+
+  getPieceRect(pieceId: string): DOMRect | null {
+    const piece = document.getElementById(pieceId);
+    if (!piece) return null;
+
+    const pieceRect = piece!.getBoundingClientRect();
+    return getRelativeRect(this.clientRect, pieceRect);
+  }
+
+  getPieceIDAtPagePos(clientPos: Pos): Element | null {
+    const pieces = document
+      .elementsFromPoint(clientPos.x, clientPos.y)
+      .filter((element) => {
+        return (
+          element instanceof HTMLDivElement &&
+          Number(element.id) > -1 &&
+          element.id !== ""
+        );
+      })
+      .sort((a, b) => Number(a.id) - Number(b.id));
+
+    if (pieces.length < 1) return null;
+
+    return pieces[0];
+  }
+
+  // MARK: Dragging
+  movePiece(pieceIndex: number, pos: Pos) {
+    const pieces = [...this.state.pieces];
+    const pieceCopy = { ...this.state.pieces[pieceIndex], pos };
+    pieces[pieceIndex] = pieceCopy;
+
+    this.setState({ pieces });
+  }
+
+  onMouseDown = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    // setup required state for possible drag
+    const clickPosition = { x: ev.clientX, y: ev.clientY };
+
+    const piece = this.getPieceIDAtPagePos(clickPosition);
+    if (!piece) return;
+
+    const pieceRect = this.getPieceRect(piece.id);
+    if (!pieceRect) return;
+
+    this.setState({
+      drag: {
+        clickPosition,
+        pieceId: piece.id,
+        pieceRect,
+      },
+    });
+  };
+
+  onMouseMove = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!this.state.drag) return;
+
+    // update piece position based on delta between the initial state set in
+    // onMouseDown and the current mouse position
+    const pieceIndex = pieceIndexFromID(this.state.drag.pieceId);
+    const mousePosition: Pos = { x: ev.clientX, y: ev.clientY };
+    const { clickPosition, pieceRect } = this.state.drag;
+
+    const newPosition: Pos = {
+      x: mousePosition.x - clickPosition.x + pieceRect.x,
+      y: mousePosition.y - clickPosition.y + pieceRect.y,
+    };
+
+    this.movePiece(pieceIndex, newPosition);
+  };
+
+  onMouseUp = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    // clear drag state after mouse button is released
+    this.setState({ drag: null });
+  };
+
+  render() {
+    console.log(this.state);
+
+    return (
+      <div className="DesignContainer">
+        <div
+          id="canvas"
+          className="Design"
+          onMouseMove={this.onMouseMove}
+          onMouseDown={this.onMouseDown}
+          onMouseUp={this.onMouseUp}
+        >
+          {this.state.pieces.map((piece, index) => (
+            <Piece
+              key={`PieceId${index}`}
+              updatePiecePosition={() => {}}
+              piece={piece}
+              pieceId={index}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+}

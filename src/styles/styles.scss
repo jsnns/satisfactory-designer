@@ -1,10 +1,21 @@
+@import "./colors.scss";
+
 @mixin primary-button {
   background-color: $orange;
   border: none;
   color: white;
+  padding: 3px 7px;
 
   &:disabled {
     background-color: $gray500;
     opacity: 0.3;
   }
+}
+
+.Button.Primary {
+  @include primary-button();
+}
+
+a {
+  text-decoration: none;
 }

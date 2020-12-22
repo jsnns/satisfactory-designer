@@ -1,0 +1,31 @@
+@import "../styles/colors.scss";
+
+.FactoryDesigner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 10px;
+
+  .Designer,
+  .Preview {
+    align-items: stretch;
+    padding: 10px;
+  }
+
+  .Designer {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    background-color: $gray800;
+  }
+
+  .Preview {
+    width: 50%;
+    height: 100%;
+    flex-grow: 1;
+    min-height: 100%;
+  }
+}

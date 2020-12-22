@@ -2,6 +2,13 @@
   padding: 10px;
   width: 100%;
 
+  .Head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .Body {
     justify-content: center;
     align-items: center;

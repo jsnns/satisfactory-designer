@@ -1,10 +1,10 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { DescribeRaw } from "../../../../components/Recipe/DescribeRaw";
-import { DescribeRecipe } from "../../../../components/Recipe/DescribeRecipe";
-import { recipeChain } from "../../../../state/recipe";
-import { Part } from "../../../../types/Part";
-import { RecipeChain } from "../../../../types/Recipe";
+import { DescribeRaw } from "../Recipe/DescribeRaw";
+import { DescribeRecipe } from "../Recipe/DescribeRecipe";
+import { recipeChain } from "../../state/recipe";
+import { Part } from "../../types/Part";
+import { RecipeChain } from "../../types/Recipe";
 
 interface Props {
   type: Part;

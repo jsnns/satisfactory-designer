@@ -4,14 +4,14 @@ import { Modal } from "../../components/Modal/Modal";
 import { Spacer } from "../../library/Spacer";
 import { currentModal } from "../../state/modal";
 import { DesignConfiguration } from "./DesignConfiguration/DesignConfiguration";
-import "./Designer.scss";
 import { Inputs } from "./Inputs/Inputs";
 import { Outputs } from "./Outputs/Outputs";
+import "./PreDesigner.scss";
 import { Preview } from "./Preview/Preview";
 
 interface Props {}
 
-export const Designer: React.FC<Props> = () => {
+export const PreDesigner: React.FC<Props> = () => {
   const [modal, setModal] = useRecoilState(currentModal);
 
   return (

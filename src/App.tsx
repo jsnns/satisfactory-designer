@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "../node_modules/normalize.css/normalize.css";
 import "./App.scss";
 import Satisfactory from "./images/logo/Satisfactory.png";
-import { Designer } from "./views/PreDesigner/Designer";
+import { Designer } from "./views/Designer";
+import { PreDesigner } from "./views/PreDesigner/PreDesigner";
 
 function App() {
   return (
@@ -14,9 +15,11 @@ function App() {
       </div>
       <div className="App">
         <Switch>
-          <Route path="/">
-            <Designer />
+          <Route path="/" exact>
+            <PreDesigner />
           </Route>
+          <Route path="/:schematic" component={PreDesigner} exact />
+          <Route path="/designer/:schematic" component={Designer} />
         </Switch>
       </div>
       <div className="Footer">
