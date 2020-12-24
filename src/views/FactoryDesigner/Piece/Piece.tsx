@@ -1,4 +1,7 @@
+import Belt90Image from "../../../images/tiles/belt-90.png";
 import FoundationImage from "../../../images/tiles/foundation.png";
+import MergerImage from "../../../images/tiles/merger.png";
+import SplitterImage from "../../../images/tiles/splitter.png";
 import { PieceData, PieceType } from "../../../types/Piece";
 import "./Piece.scss";
 
@@ -18,13 +21,70 @@ export const Foundation: React.FC<Props> = ({ piece }) => {
       style={{
         width: 80,
         height: 80,
+        transform: piece.transform
+          ? `rotate(${piece.transform.rotation || 0})`
+          : undefined,
+      }}
+    />
+  );
+};
+export const Splitter: React.FC<Props> = ({ piece }) => {
+  return (
+    <img
+      alt="Splitter"
+      draggable={false}
+      src={SplitterImage}
+      className="Splitter"
+      style={{
+        width: 40,
+        height: 40,
+        transform: piece.transform
+          ? `rotate(${piece.transform.rotation || 0}deg)`
+          : undefined,
+      }}
+    />
+  );
+};
+export const Merger: React.FC<Props> = ({ piece }) => {
+  return (
+    <img
+      alt="Merger"
+      draggable={false}
+      src={MergerImage}
+      className="Merger"
+      style={{
+        width: 40,
+        height: 40,
+        transform: piece.transform
+          ? `rotate(${piece.transform.rotation || 0}deg)`
+          : undefined,
+      }}
+    />
+  );
+};
+export const Belt90: React.FC<Props> = ({ piece }) => {
+  return (
+    <img
+      alt="Merger"
+      draggable={false}
+      src={Belt90Image}
+      className="Merger"
+      style={{
+        width: 20,
+        height: 20,
+        transform: piece.transform
+          ? `rotate(${piece.transform.rotation || 0}deg)`
+          : undefined,
       }}
     />
   );
 };
 
 export const elementForPieceType: { [key in PieceType]: React.FC<Props> } = {
-  Foundation: Foundation,
+  Foundation,
+  Merger,
+  Splitter,
+  "Belt-90": Belt90,
 };
 
 export const Piece: React.FC<Props> = (props) => {

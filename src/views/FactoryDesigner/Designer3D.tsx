@@ -18,18 +18,16 @@ interface DragState {
 
 interface Designer3DState {
   scale: number;
-  pieces: PieceData[];
   drag: DragState | null;
+}
+
+interface DesignerProps {
+  pieces: PieceData[];
+  updatePieces: (pieces: PieceData[]) => void;
 }
 
 const INITIAL_STATE: Designer3DState = {
   scale: 1,
-  pieces: [
-    { type: "Foundation", pos: { x: 10, y: 10 } },
-    { type: "Foundation", pos: { x: 90, y: 90 } },
-    { type: "Foundation", pos: { x: 10, y: 90 } },
-    { type: "Foundation", pos: { x: 90, y: 10 } },
-  ],
   drag: null,
 };
 
@@ -51,8 +49,8 @@ const pieceIndexFromID = (pieceId: string): number => {
   return Number(pieceId);
 };
 
-export class Designer3D extends Component<{}, Designer3DState> {
-  constructor(props = {}) {
+export class Designer3D extends Component<DesignerProps, Designer3DState> {
+  constructor(props: DesignerProps) {
     super(props);
 
     this.state = INITIAL_STATE;
@@ -95,11 +93,11 @@ export class Designer3D extends Component<{}, Designer3DState> {
 
   // ANCHOR Dragging
   movePiece(pieceIndex: number, pos: Pos) {
-    const pieces = [...this.state.pieces];
-    const pieceCopy = { ...this.state.pieces[pieceIndex], pos };
+    const pieces = [...this.props.pieces];
+    const pieceCopy = { ...this.props.pieces[pieceIndex], pos };
     pieces[pieceIndex] = pieceCopy;
 
-    this.setState({ pieces });
+    this.props.updatePieces(pieces);
   }
 
   onMouseDown = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -179,7 +177,7 @@ export class Designer3D extends Component<{}, Designer3DState> {
               transform: `scale(${this.state.scale})`,
             }}
           >
-            {this.state.pieces.map((piece, index) => (
+            {this.props.pieces.map((piece, index) => (
               <Piece
                 key={`PieceId${index}`}
                 updatePiecePosition={() => {}}
