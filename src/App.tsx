@@ -1,16 +1,21 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import "../node_modules/normalize.css/normalize.css";
 import "./App.scss";
-import { serializeSchematic } from "./data/schematicTools";
+import {
+  serializeSchematic,
+  updateSchematicIfNeeded,
+} from "./data/schematicTools";
 import Satisfactory from "./images/logo/Satisfactory.png";
 import { schematicState } from "./state/schematic";
 import { Designer } from "./views/Designer";
 import { PreDesigner } from "./views/PreDesigner/PreDesigner";
 
 function App() {
-  const schematic = useRecoilValue(schematicState);
+  const [schematic, setSchematic] = useRecoilState(schematicState);
+  updateSchematicIfNeeded(schematic, setSchematic);
+
   return (
     <BrowserRouter>
       <div className="Header">
@@ -21,7 +26,7 @@ function App() {
         <div className="Menu">
           {schematic.enabledOutputParts.length > 0 && (
             <a
-              href={`https://app.satisfactorydesigner.com/${serializeSchematic(
+              href={`https://app.satisfactorydesigner.com/?schematic=${serializeSchematic(
                 schematic
               )}`}
               className="Button Primary"
@@ -33,11 +38,8 @@ function App() {
       </div>
       <div className="App">
         <Switch>
-          <Route path="/" exact>
-            <PreDesigner />
-          </Route>
-          <Route path="/:schematic" component={PreDesigner} exact />
-          <Route path="/designer/:schematic" component={Designer} />
+          <Route path="/" component={PreDesigner} exact />
+          <Route path="/layout" component={Designer} exact />
         </Switch>
       </div>
       <div className="Footer">

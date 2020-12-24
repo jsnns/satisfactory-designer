@@ -19,7 +19,7 @@ export const Preview: React.FC<Props> = () => {
         <h2>Factory Preview</h2>
         {/* ENABLE ONCE READY */}
         {false && schematic.enabledOutputParts.length > 0 && (
-          <Link to={`/designer/${btoa(JSON.stringify(schematic))}`}>
+          <Link to={`/designer?schematic=${btoa(JSON.stringify(schematic))}`}>
             <p className="Button Primary">Open in Designer</p>
           </Link>
         )}

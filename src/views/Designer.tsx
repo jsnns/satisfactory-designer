@@ -14,7 +14,7 @@ interface Props {
 export const Designer: React.FC<Props> = ({ match }) => {
   const [schematic, setSchematic] = useRecoilState(schematicState);
 
-  updateSchematicIfNeeded(match.params.schematic, schematic, setSchematic);
+  updateSchematicIfNeeded(schematic, setSchematic);
 
   return (
     <div className="FactoryDesigner">

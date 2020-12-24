@@ -1,4 +1,5 @@
 import React from "react";
+import { match } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Modal } from "../../components/Modal/Modal";
 import { Spacer } from "../../library/Spacer";
@@ -9,7 +10,9 @@ import { Outputs } from "./Outputs/Outputs";
 import "./PreDesigner.scss";
 import { Preview } from "./Preview/Preview";
 
-interface Props {}
+interface Props {
+  match: match<{ schematc: string }>;
+}
 
 export const PreDesigner: React.FC<Props> = () => {
   const [modal, setModal] = useRecoilState(currentModal);

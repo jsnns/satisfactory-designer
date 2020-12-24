@@ -5,11 +5,25 @@ export const serializeSchematic = (schematic: Schematic): string => {
 };
 
 export const updateSchematicIfNeeded = (
-  newSchematicString: string,
   previousSchematic: Schematic,
   setSchematic: (schematic: Schematic) => void
 ) => {
-  if (serializeSchematic(previousSchematic) !== newSchematicString) {
-    setSchematic(JSON.parse(atob(newSchematicString)));
+  const newSchematicString = getSchematicStringFromURL(window.location.search);
+
+  if (!newSchematicString) return;
+
+  try {
+    if (serializeSchematic(previousSchematic) !== newSchematicString) {
+      setSchematic(JSON.parse(atob(newSchematicString)));
+    }
+  } catch (e) {
+    console.error("Error decoding schematic", e);
   }
+};
+
+export const getSchematicStringFromURL = (
+  locationString: string
+): string | null => {
+  const params = new URLSearchParams(locationString);
+  return params.get("schematic");
 };
