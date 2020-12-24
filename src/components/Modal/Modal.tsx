@@ -16,7 +16,7 @@ export const Modal: React.FC<Props> = ({ modal, dismissModal }) => {
   }
 
   return (
-    <ListenForKeyPress keys={["Escape"]} listener={dismissModal}>
+    <ListenForKeyPress handlers={{ Escape: dismissModal }}>
       <div className="ModalContainer">
         <HandleClickOutside handler={dismissModal}>
           <div className="Modal">

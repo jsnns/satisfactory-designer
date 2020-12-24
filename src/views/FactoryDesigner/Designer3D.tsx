@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { normalizeToRange } from "../../data/normalize";
+import { ListenForKeyPress } from "../../library/ListenForKeyPress";
 import { PieceData } from "../../types/Piece";
 import { Piece } from "./Piece/Piece";
 import "./styles/index.scss";
@@ -21,7 +23,7 @@ interface Designer3DState {
 }
 
 const INITIAL_STATE: Designer3DState = {
-  scale: 10,
+  scale: 1,
   pieces: [
     { type: "Foundation", pos: { x: 10, y: 10 } },
     { type: "Foundation", pos: { x: 90, y: 90 } },
@@ -56,12 +58,12 @@ export class Designer3D extends Component<{}, Designer3DState> {
     this.state = INITIAL_STATE;
   }
 
-  // MARK: Lifecycle
+  // ANCHOR Lifecycle
   componentDidMount() {}
 
   componentWillUnmount() {}
 
-  // MARK: Calculated Properties
+  // ANCHOR Calculated Properties
   get clientRect(): DOMRect {
     return document.getElementById("canvas")!.getBoundingClientRect();
   }
@@ -91,7 +93,7 @@ export class Designer3D extends Component<{}, Designer3DState> {
     return pieces[0];
   }
 
-  // MARK: Dragging
+  // ANCHOR Dragging
   movePiece(pieceIndex: number, pos: Pos) {
     const pieces = [...this.state.pieces];
     const pieceCopy = { ...this.state.pieces[pieceIndex], pos };
@@ -133,6 +135,9 @@ export class Designer3D extends Component<{}, Designer3DState> {
       y: mousePosition.y - clickPosition.y + pieceRect.y,
     };
 
+    newPosition.x /= this.state.scale;
+    newPosition.y /= this.state.scale;
+
     this.movePiece(pieceIndex, newPosition);
   };
 
@@ -141,28 +146,50 @@ export class Designer3D extends Component<{}, Designer3DState> {
     this.setState({ drag: null });
   };
 
+  // ANCHOR Scale and Zooming
+  zoom = (amount: number): void => {
+    console.log({ amount });
+    this.setState({
+      scale: normalizeToRange(0.8, 10)(this.state.scale + amount),
+    });
+  };
+
+  onWheel = (ev: React.WheelEvent<HTMLDivElement>) => {
+    if (ev.metaKey) {
+      this.zoom(ev.deltaY / 100);
+    }
+  };
+
   render() {
     console.log(this.state);
 
     return (
-      <div className="DesignContainer">
-        <div
-          id="canvas"
-          className="Design"
-          onMouseMove={this.onMouseMove}
-          onMouseDown={this.onMouseDown}
-          onMouseUp={this.onMouseUp}
-        >
-          {this.state.pieces.map((piece, index) => (
-            <Piece
-              key={`PieceId${index}`}
-              updatePiecePosition={() => {}}
-              piece={piece}
-              pieceId={index}
-            />
-          ))}
+      <ListenForKeyPress
+        handlers={{ "=": () => this.zoom(1), "-": () => this.zoom(-1) }}
+      >
+        <div className="DesignContainer" onWheel={this.onWheel}>
+          <div
+            id="canvas"
+            className="Design"
+            onMouseMove={this.onMouseMove}
+            onMouseDown={this.onMouseDown}
+            onMouseUp={this.onMouseUp}
+            style={{
+              transformOrigin: "top left",
+              transform: `scale(${this.state.scale})`,
+            }}
+          >
+            {this.state.pieces.map((piece, index) => (
+              <Piece
+                key={`PieceId${index}`}
+                updatePiecePosition={() => {}}
+                piece={piece}
+                pieceId={index}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </ListenForKeyPress>
     );
   }
 }
