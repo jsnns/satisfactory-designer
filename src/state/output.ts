@@ -7,8 +7,9 @@ import {
 } from "../data/recipies/chain";
 import { roundPerMin } from "../data/round";
 import { Part } from "../types/Part";
-import { RecipePart } from "../types/Recipe";
+import { RecipeChain, RecipePart } from "../types/Recipe";
 import { totalRawInput } from "./input";
+import { recipeChain } from "./recipe";
 
 export const enabledOutputParts = atom<Part[]>({
   default: [],
@@ -64,5 +65,13 @@ export const maxByInput = selectorFamily<number, Part>({
       .filter((num) => !isNaN(num));
 
     return roundPerMin(Math.min(...constrainBy) || 0) + get(targetOutput(part));
+  },
+});
+
+export const fullOutputChain = selector<RecipeChain[]>({
+  key: "FullOutputChain",
+  get: ({ get }) => {
+    const parts = get(enabledOutputParts);
+    return parts.map((part) => get(recipeChain(part)));
   },
 });

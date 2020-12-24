@@ -1,8 +1,7 @@
 import { Component } from "react";
 
 interface Props {
-  keys: string[];
-  listener: () => void;
+  handlers: { [key: string]: () => void };
 }
 
 export class ListenForKeyPress extends Component<Props> {
@@ -15,8 +14,8 @@ export class ListenForKeyPress extends Component<Props> {
   }
 
   listener = (ev: KeyboardEvent) => {
-    if (this.props.keys.includes(ev.key)) {
-      this.props.listener();
+    if (this.props.handlers.hasOwnProperty(ev.key)) {
+      this.props.handlers[ev.key]();
     }
   };
 
