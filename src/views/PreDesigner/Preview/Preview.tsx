@@ -17,7 +17,8 @@ export const Preview: React.FC<Props> = () => {
     <div className="Preview">
       <div className="Head">
         <h2>Factory Preview</h2>
-        {schematic.enabledOutputParts.length > 0 && (
+        {/* ENABLE ONCE READY */}
+        {false && schematic.enabledOutputParts.length > 0 && (
           <Link to={`/designer/${btoa(JSON.stringify(schematic))}`}>
             <p className="Button Primary">Open in Designer</p>
           </Link>
