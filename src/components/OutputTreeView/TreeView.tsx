@@ -1,10 +1,10 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { DescribeRaw } from "../Recipe/DescribeRaw";
-import { DescribeRecipe } from "../Recipe/DescribeRecipe";
 import { recipeChain } from "../../state/recipe";
 import { Part } from "../../types/Part";
 import { RecipeChain } from "../../types/Recipe";
+import { DescribeRaw } from "../Recipe/DescribeRaw";
+import { DescribeRecipe } from "../Recipe/DescribeRecipe";
 
 interface Props {
   type: Part;
@@ -29,7 +29,11 @@ const Recipe: React.FC<RecipeProps> = ({ chain, level = 0 }) => {
       </li>
 
       {chain.nexts.map((nextChain) => (
-        <Recipe chain={nextChain} level={level + 1} />
+        <Recipe
+          key={`recipe${level}${JSON.stringify(nextChain)}`}
+          chain={nextChain}
+          level={level + 1}
+        />
       ))}
     </ul>
   );

@@ -29,7 +29,11 @@ export const ProductionTable: React.FC<Props> = () => {
         </thead>
         <tbody>
           {summedLineItems.map(({ part, perMin }) => (
-            <ProductionTableRow part={part} perMin={perMin} />
+            <ProductionTableRow
+              key={`productionTableRow${part}`}
+              part={part}
+              perMin={perMin}
+            />
           ))}
         </tbody>
       </table>

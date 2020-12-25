@@ -8,10 +8,8 @@ import "./styles/normalize.scss";
 import "./styles/styles.scss";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <App />
-    </RecoilRoot>
-  </React.StrictMode>,
+  <RecoilRoot>
+    <App />
+  </RecoilRoot>,
   document.getElementById("root")
 );

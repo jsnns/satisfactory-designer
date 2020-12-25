@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import "../node_modules/normalize.css/normalize.css";
@@ -14,7 +14,11 @@ import { PreDesigner } from "./views/PreDesigner/PreDesigner";
 
 function App() {
   const [schematic, setSchematic] = useRecoilState(schematicState);
-  updateSchematicIfNeeded(schematic, setSchematic);
+
+  useEffect(() => {
+    updateSchematicIfNeeded(schematic, setSchematic);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [window.location.search]);
 
   return (
     <BrowserRouter>

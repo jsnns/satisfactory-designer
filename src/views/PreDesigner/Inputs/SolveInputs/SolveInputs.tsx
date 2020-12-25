@@ -6,7 +6,7 @@ export const SolveInputs: React.FC = () => {
   return (
     <div className="SolveInputs">
       {RESOURCE_NODE.map((nodeType) => (
-        <SolveInput node={nodeType} />
+        <SolveInput key={`SolveInput${nodeType}`} node={nodeType} />
       ))}
     </div>
   );

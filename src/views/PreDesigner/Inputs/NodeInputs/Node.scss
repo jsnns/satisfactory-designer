@@ -5,39 +5,75 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
-  align-items: flex-end;
 
-  .ResourceType {
-    font-weight: bolder;
-    font-size: 1.2em;
-    width: 100px;
+  img {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
   }
 
-  .NodeCounts {
+  .NodeBody {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    background-color: $gray600;
+    padding: 10px;
     flex-grow: 1;
-    max-width: 200px;
 
-    .Count {
+    .ResourceType {
+      font-size: 1.2em;
+      font-weight: bolder;
+      width: 100px;
+    }
+
+    .NodeCounts {
       display: flex;
-      flex-direction: column;
-      display: flex;
-      justify-items: center;
-      align-items: center;
-      user-select: none;
+      flex-direction: row;
+      flex-grow: 1;
 
-      label {
-        margin: 5px;
-      }
+      .Count {
+        display: flex;
+        flex-direction: column;
+        display: flex;
+        justify-items: center;
+        user-select: none;
 
-      .Buttons {
-        button {
-          @include primary-button;
-          width: 20px;
-          height: 20px;
+        .Purity {
+          font-size: 0.85em;
+          color: $gray50;
+          margin-bottom: 3px;
+        }
+
+        &:not(:first-child) {
+          margin-left: 25px;
+        }
+
+        label {
+          margin: 7px;
+        }
+
+        .Buttons {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          button {
+            background-color: $orange;
+            border: none;
+            color: white;
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:disabled {
+              background-color: $gray300;
+              opacity: 0.2;
+            }
+          }
         }
       }
     }
