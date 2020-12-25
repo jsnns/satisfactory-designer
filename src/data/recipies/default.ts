@@ -65,7 +65,7 @@ const ModularFrame: Recipe = {
   machine: "assembler",
   inputs: [
     { part: "steel_pipe", perMin: 10 },
-    { part: "recinforced_plate", perMin: 2 },
+    { part: "reinforced_iron_plate", perMin: 2 },
   ],
   output: {
     part: "modular_frame",
@@ -89,7 +89,7 @@ const ReinforcedIronPlate: Recipe = {
     { part: "screw", perMin: 60 },
   ],
   output: {
-    part: "recinforced_plate",
+    part: "reinforced_iron_plate",
     perMin: 5,
   },
 };
@@ -101,7 +101,7 @@ const IndustrialBeam: Recipe = {
     { part: "concrete", perMin: 30 },
   ],
   output: {
-    part: "industrial_beam",
+    part: "encased_industrial_beam",
     perMin: 6,
   },
 };
@@ -111,7 +111,7 @@ const HeavyModularFrame: Recipe = {
   inputs: [
     { part: "modular_frame", perMin: 10 },
     { part: "steel_beam", perMin: 30 },
-    { part: "industrial_beam", perMin: 10 },
+    { part: "encased_industrial_beam", perMin: 10 },
     { part: "screw", perMin: 200 },
   ],
   output: {
@@ -195,7 +195,7 @@ const IronRod: Recipe = {
 export const Computer: Recipe = {
   machine: "manufacturer",
   inputs: [
-    { part: "circut_board", perMin: 25 },
+    { part: "circuit_board", perMin: 25 },
     { part: "cable", perMin: 22.5 },
     { part: "plastic", perMin: 45 },
     { part: "screw", perMin: 130 },
@@ -213,7 +213,7 @@ export const CircutBoard: Recipe = {
     { part: "copper_sheet", perMin: 15 },
   ],
   output: {
-    part: "circut_board",
+    part: "circuit_board",
     perMin: 7.5,
   },
 };
@@ -222,7 +222,7 @@ export const Quickwire: Recipe = {
   machine: "constructor",
   inputs: [{ part: "caterium_ingot", perMin: 12 }],
   output: {
-    part: "quick_wire",
+    part: "quickwire",
     perMin: 60,
   },
 };
@@ -242,14 +242,14 @@ export const recipeBook: RecipeBook = {
   steel_ingot: SteelIngot,
   iron_ingot: IronIngot,
   modular_frame: ModularFrame,
-  recinforced_plate: ReinforcedIronPlate,
+  reinforced_iron_plate: ReinforcedIronPlate,
   screw: Screw,
-  industrial_beam: IndustrialBeam,
+  encased_industrial_beam: IndustrialBeam,
   heavy_modular_frame: HeavyModularFrame,
   iron_plate: IronPlate,
   computer: Computer,
-  circut_board: CircutBoard,
-  quick_wire: Quickwire,
+  circuit_board: CircutBoard,
+  quickwire: Quickwire,
   caterium_ingot: CateriumIngot,
   copper_ingot: CopperIngot,
   plastic: Plastic,
