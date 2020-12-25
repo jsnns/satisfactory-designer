@@ -17,6 +17,7 @@ function App() {
 
   useEffect(() => {
     updateSchematicIfNeeded(schematic, setSchematic);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.location.search]);
 
   return (

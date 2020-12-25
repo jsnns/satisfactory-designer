@@ -17,9 +17,11 @@ export const RawInputTable: React.FC<Props> = () => {
     <div className="RawInputTable">
       <table>
         <thead>
-          <th>Resource Type</th>
-          <th className="Th">Input Total</th>
-          <th className="Th">Utilization</th>
+          <tr>
+            <th>Resource Type</th>
+            <th className="Th">Input Total</th>
+            <th className="Th">Utilization</th>
+          </tr>
         </thead>
         <tbody>
           {enabledNodes.map((nodeType) => (

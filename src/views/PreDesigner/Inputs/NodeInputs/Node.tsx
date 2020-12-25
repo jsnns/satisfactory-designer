@@ -52,6 +52,7 @@ export const Node: React.FC<Props> = ({ type }) => {
       <div className="NodeCounts">
         {PURITY.map((purity) => (
           <Count
+            key={`PurityCount${purity}`}
             purity={purity}
             count={nodeCount[purity]}
             plus={add(purity, 1)}

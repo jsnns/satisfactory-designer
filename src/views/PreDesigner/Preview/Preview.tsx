@@ -27,7 +27,7 @@ export const Preview: React.FC<Props> = () => {
       <div className="Body">
         <Spacer size="medium" />
         {outputParts.map((partType) => (
-          <TreeView type={partType} />
+          <TreeView key={`OutputPart${partType}`} type={partType} />
         ))}
       </div>
     </div>
