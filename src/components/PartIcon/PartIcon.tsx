@@ -7,6 +7,7 @@ interface PartIconProps {
 export const PartIcon: React.FC<PartIconProps> = ({ part }) => {
   return (
     <img
+      draggable={false}
       height="100%"
       width="100%"
       src={resourceImage[part]}

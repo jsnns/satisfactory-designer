@@ -15,7 +15,7 @@ export const NodeList: React.FC = () => {
       {inputNodes.map((resourceNodeType, index) => {
         return (
           <React.Fragment key={resourceNodeType}>
-            {index !== 0 && <Spacer size="medium" />}
+            {index !== 0 && <Spacer size="large" />}
             <Node type={resourceNodeType} />
           </React.Fragment>
         );
