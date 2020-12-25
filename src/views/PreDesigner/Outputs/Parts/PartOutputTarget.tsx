@@ -26,8 +26,8 @@ export const PartOutputTarget: React.FC<Props> = ({ type }) => {
           <button onClick={() => setOutput(baseFactor)}>
             Base ({baseFactor})
           </button>
-          <button onClick={() => setOutput(output / 10)}>⅒</button>
-          <button onClick={() => setOutput(output * 10)}>x10</button>
+          <button onClick={() => setOutput(output / 2)}>½</button>
+          <button onClick={() => setOutput(output * 2)}>x2</button>
         </div>
       }
       value={output}

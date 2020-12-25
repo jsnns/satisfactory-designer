@@ -157,7 +157,7 @@ export class ManySelect<OptionT> extends Component<
 
     return (
       <HandleClickOutside handler={this.handleClickOutside}>
-        <ListenForKeyPress keys={["Escape"]} listener={this.handleClickOutside}>
+        <ListenForKeyPress handlers={{ Escape: this.handleClickOutside }}>
           <div className="ManySelectContainer">
             <div onClick={this.toggleDropdown} className="ManySelect">
               <div className="ManySelectBody">
