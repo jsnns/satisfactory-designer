@@ -16,7 +16,8 @@ export const totalRawInput = selectorFamily<number, ResourceNode>({
     return totalResourcesFromNodeCount(
       nodeCount,
       overclockMultipler,
-      multipleForMinerType[minerType]
+      multipleForMinerType[minerType],
+      nodeType
     );
   },
 });

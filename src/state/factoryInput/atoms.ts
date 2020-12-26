@@ -19,7 +19,7 @@ export const input = atomFamily<PurityCount, ResourceNode>({
 
 export const minerType = atomFamily<MinerType, ResourceNode>({
   key: "MinerType",
-  default: "Miner Mk 1.",
+  default: "Mk. 1",
 });
 
 export const overclockMultipler = atomFamily<number, ResourceNode>({

@@ -7,7 +7,7 @@ import { WithInfo } from "../../../../library/Info/Info";
 import { NumberInput } from "../../../../library/NumberInput/NumberInput";
 import { Spacer } from "../../../../library/Spacer";
 import { factoryInputState } from "../../../../state/factoryInput";
-import { MinerType, MINER_TYPES } from "../../../../types/Miner";
+import { getMinerOptions, MinerType } from "../../../../types/Miner";
 import {
   PURITY,
   Purity,
@@ -64,8 +64,9 @@ export const Node: React.FC<Props> = ({ type }) => {
         <Spacer size="small" />
         <div className="InputConfiguration">
           <Select
+            label="Miner Type"
             selected={[minerType]}
-            options={MINER_TYPES.map((minerType) => ({
+            options={getMinerOptions(type).map((minerType) => ({
               label: minerType,
               value: minerType,
             }))}
@@ -77,11 +78,10 @@ export const Node: React.FC<Props> = ({ type }) => {
           <NumberInput
             leftElement={
               <div className="ActionButtons">
-                <button onClick={() => setOverclock(1)}>1.0</button>
-                <button onClick={() => setOverclock(2.5)}>2.5</button>
+                <button onClick={() => setOverclock(2.5)}>250%</button>
               </div>
             }
-            label="Miner Overclock"
+            label="Miner Overclock Multiple"
             onChange={(newOverclock) =>
               setOverclock(normalizeOverclockSpeed(newOverclock))
             }

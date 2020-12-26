@@ -179,7 +179,7 @@ export const resourceImage: { [key in RecipePart]?: string } & {
   packaged_liquid_biofuel,
   plastic,
   copper_ore,
-  encased_industrial_beam,
+  industrial_beam: encased_industrial_beam,
   ficsmas_tree_branch,
   quantum_computer,
   parachute,

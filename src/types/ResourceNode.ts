@@ -8,6 +8,8 @@ export const RESOURCE_NODE = [
   "water",
 ] as const;
 
+export const NEEDS_PIPE: ResourceNode[] = ["oil", "water"];
+
 export const isResourceNodeType = (a: any): a is ResourceNode =>
   RESOURCE_NODE.includes(a);
 
