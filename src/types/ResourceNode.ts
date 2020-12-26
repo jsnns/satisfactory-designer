@@ -1,11 +1,15 @@
 export const RESOURCE_NODE = [
-  "copper",
   "iron",
+  "copper",
   "limestone",
   "coal",
-  "oil",
+  "uranium",
+  "sulfur",
+  "bauxite",
+  "quartz",
   "caterium",
   "water",
+  "oil",
 ] as const;
 
 export const NEEDS_PIPE: ResourceNode[] = ["oil", "water"];
@@ -39,4 +43,8 @@ export const resourceNodeTypeReadable: {
   oil: "Oil",
   caterium: "Caterium",
   water: "Water",
+  bauxite: "Bauxite",
+  quartz: "Quartz",
+  sulfur: "Sulfur",
+  uranium: "Uranium",
 };

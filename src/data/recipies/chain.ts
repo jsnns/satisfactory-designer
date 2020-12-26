@@ -9,7 +9,7 @@ import {
   ResourceNode,
   RESOURCE_NODE,
 } from "../../types/ResourceNode";
-import { recipeBook } from "./default";
+import { RawResource, recipeBook } from "./default";
 
 export const getRawInputRequired = ({ get }: { get: GetRecoilValue }) => (
   unit: RecipeUnit
@@ -78,7 +78,7 @@ export const getRecipeChain = ({ get }: { get: GetRecoilValue }) => (
   if (isResourceNodeType(unit.part)) {
     return {
       recipe: {
-        ...recipeBook[unit.part],
+        ...(recipeBook[unit.part] || RawResource(unit.part)),
         output: {
           part: unit.part,
           perMin: unit.perMin,
