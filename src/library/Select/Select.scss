@@ -66,6 +66,12 @@
     overflow-y: scroll;
     box-sizing: border-box;
 
+    hr {
+      opacity: 0.2;
+      border-width: 1px;
+      margin-top: 15px;
+    }
+
     .CheckboxContainer .CheckboxSelection {
       margin: 0.25em;
       margin-right: 0.35em;

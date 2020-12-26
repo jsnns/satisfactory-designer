@@ -1,4 +1,5 @@
 import { Recipe, RecipePart } from "../../types/Recipe";
+import { RawResource, recipeBook } from "./default";
 
 const SolidSteelIngot: Recipe = {
   name: "Solid Steel Ingot",
@@ -109,3 +110,6 @@ export const altRecipesFor: { [key in RecipePart]?: Recipe[] } = {
   copper_ingot: [CopperAlloyIngot],
   quickwire: [FusedQuickwire],
 };
+
+export const getRecipes = (part: RecipePart): Recipe[] =>
+  [recipeBook[part] || RawResource(part)].concat(altRecipesFor[part] || []);

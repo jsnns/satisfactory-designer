@@ -156,8 +156,29 @@ export class Select<OptionT> extends Component<
     );
   };
 
+  getOptions = (selected: boolean): Option<OptionT>[] => {
+    const os = [...this.props.options]
+      .filter((option) => {
+        if (!this.props.search) return true;
+        if (this.props.search && this.state.searchString) {
+          return (
+            option.label
+              .toLowerCase()
+              .indexOf(this.state.searchString.toLowerCase()) > -1
+          );
+        }
+
+        return true;
+      })
+      .filter((option) => this.isOptionSelected(option.value) === selected);
+
+    console.log({ [`os-${selected}`]: os });
+
+    return os;
+  };
+
   render() {
-    const { options, label, includeSelectAll, search } = this.props;
+    const { label, includeSelectAll, search } = this.props;
 
     return (
       <HandleClickOutside handler={this.handleClickOutside}>
@@ -205,20 +226,9 @@ export class Select<OptionT> extends Component<
                     />
                   </div>
                 )}
-                {options
-                  .filter((option) => {
-                    if (!search) return true;
-                    if (search && this.state.searchString) {
-                      return (
-                        option.label
-                          .toLowerCase()
-                          .indexOf(this.state.searchString.toLowerCase()) > -1
-                      );
-                    }
-
-                    return true;
-                  })
-                  .map(this.renderOption)}
+                {this.getOptions(true).map(this.renderOption)}
+                {this.props.selected.length > 0 && <hr />}
+                {this.getOptions(false).map(this.renderOption)}
               </div>
             )}
           </div>
