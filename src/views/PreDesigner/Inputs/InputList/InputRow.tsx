@@ -75,6 +75,12 @@ export const Node: React.FC<Props> = ({ type }) => {
           />
           <Spacer size="small" />
           <NumberInput
+            leftElement={
+              <div className="ActionButtons">
+                <button onClick={() => setOverclock(1)}>1.0</button>
+                <button onClick={() => setOverclock(2.5)}>2.5</button>
+              </div>
+            }
             label="Miner Overclock"
             onChange={(newOverclock) =>
               setOverclock(normalizeOverclockSpeed(newOverclock))

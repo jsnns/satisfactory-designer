@@ -3,7 +3,7 @@ import { totalResourcesFromNodeCount } from "../../data/inputCalculations";
 import { buildProductionLineItemSum } from "../../data/recipies/chain";
 import { multipleForMinerType } from "../../types/Miner";
 import { ResourceNode } from "../../types/ResourceNode";
-import { productionLineItems } from "../factoryOutput/selectors";
+import { allProductionLineItems } from "../factoryOutput/selectors";
 import { input, minerType, overclockMultipler } from "./atoms";
 import { InputConfiguration } from "./inputTypes";
 
@@ -24,7 +24,7 @@ export const totalRawInput = selectorFamily<number, ResourceNode>({
 export const requiredInput = selectorFamily<number, ResourceNode>({
   key: "RequiredInputValues",
   get: (nodeType) => ({ get }) => {
-    const sum = buildProductionLineItemSum(get(productionLineItems));
+    const sum = buildProductionLineItemSum(get(allProductionLineItems));
 
     return sum[nodeType] || 0;
   },

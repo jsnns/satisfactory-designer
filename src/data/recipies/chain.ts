@@ -1,5 +1,6 @@
 import { GetRecoilValue } from "recoil";
 import { baseMachineClock } from "../../state/designConfig";
+import { LineItem } from "../../state/factoryOutput/outputTypes";
 import { selectedRecipe } from "../../state/recipe";
 import { PARTS } from "../../types/Part";
 import { RecipeChain, RecipePart, RecipeUnit } from "../../types/Recipe";
@@ -24,7 +25,7 @@ export const getRawInputRequired = ({ get }: { get: GetRecoilValue }) => (
 };
 
 export const buildProductionLineItemSum = (
-  productionLineItems: { part: RecipePart; perMin: number }[]
+  productionLineItems: LineItem[]
 ): { [key in RecipePart]?: number } => {
   const sum: { [key in RecipePart]?: number } = {};
 
@@ -36,10 +37,10 @@ export const buildProductionLineItemSum = (
 };
 
 export const sumProductionLineItems = (
-  productionLineItems: { part: RecipePart; perMin: number }[]
-): { part: RecipePart; perMin: number }[] => {
+  productionLineItems: LineItem[]
+): LineItem[] => {
   const sum = buildProductionLineItemSum(productionLineItems);
-  const summedProductionLineItems: { part: RecipePart; perMin: number }[] = [];
+  const summedProductionLineItems: LineItem[] = [];
 
   const addItem = (part: RecipePart) => {
     if (sum[part]) {
@@ -56,10 +57,8 @@ export const sumProductionLineItems = (
   return summedProductionLineItems;
 };
 
-export const getProductionLineItems = (
-  chain: RecipeChain
-): { part: RecipePart; perMin: number }[] => {
-  const productionLineItems: { part: RecipePart; perMin: number }[] = [];
+export const getProductionLineItems = (chain: RecipeChain): LineItem[] => {
+  const productionLineItems: LineItem[] = [];
 
   productionLineItems.push({
     part: chain.recipe.output.part,

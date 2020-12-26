@@ -9,7 +9,7 @@ import { ProductionTableRow } from "./ProductionTableRow";
 interface Props {}
 
 export const ProductionTable: React.FC<Props> = () => {
-  const lineItems = useRecoilValue(factoryOutputState.productionLineItems);
+  const lineItems = useRecoilValue(factoryOutputState.allProductionLineItems);
   const summedLineItems = sumProductionLineItems(lineItems)
     .filter(({ part }) => isPart(part))
     .sort((a, b) => b.perMin - a.perMin);

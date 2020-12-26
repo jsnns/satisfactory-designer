@@ -11,38 +11,44 @@ import { RecipeChain, RecipePart } from "../../types/Recipe";
 import { totalRawInput } from "../factoryInput/selectors";
 import { recipeChain } from "../recipe";
 import { enabledOutputParts, targetOutput } from "./atoms";
+import { LineItem } from "./outputTypes";
 
-export const productionLineItems = selector<
-  { part: RecipePart; perMin: number }[]
->({
-  key: "TotalProduction",
-  get: ({ get }) => {
-    const endProductProduction = get(enabledOutputParts).map((part) => ({
-      part,
-      perMin: get(targetOutput(part)),
-    }));
-
-    const productionLineItems: { part: RecipePart; perMin: number }[] = [];
-
-    endProductProduction.forEach((unit) => {
-      productionLineItems.push(
-        ...getProductionLineItems(getRecipeChain({ get })(unit))
-      );
-    });
+export const productionLineItems = selectorFamily<LineItem[], Part>({
+  key: "LineItems",
+  get: (part) => ({ get }) => {
+    const productionLineItems: {
+      part: RecipePart;
+      perMin: number;
+    }[] = getProductionLineItems(
+      getRecipeChain({ get })({
+        part,
+        perMin: get(targetOutput(part)),
+      })
+    );
 
     return productionLineItems;
   },
 });
 
-export const maxByInput = selectorFamily<number, Part>({
+export const allProductionLineItems = selector<LineItem[]>({
+  key: "AllLineItems",
+  get: ({ get }) => {
+    return get(enabledOutputParts)
+      .map((part) => get(productionLineItems(part)))
+      .flat();
+  },
+});
+
+export const maxOutputTargetByInputResources = selectorFamily<number, Part>({
   key: "MaxByInput",
   get: (part) => ({ get }) => {
     const rawFor1 = getRawInputRequired({ get })({
       part,
       perMin: 1,
     });
+
     const neededLineItems = buildProductionLineItemSum(
-      get(productionLineItems)
+      get(productionLineItems(part))
     );
 
     const constrainBy: number[] = rawFor1
@@ -54,6 +60,8 @@ export const maxByInput = selectorFamily<number, Part>({
         return avaliable / perMin;
       })
       .filter((num) => !isNaN(num));
+
+    console.log({ constrainBy, neededLineItems });
 
     return roundPerMin(Math.min(...constrainBy) || 0) + get(targetOutput(part));
   },
