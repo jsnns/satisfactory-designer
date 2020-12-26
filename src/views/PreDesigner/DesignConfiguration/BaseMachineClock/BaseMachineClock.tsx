@@ -4,7 +4,7 @@ import { Select } from "../../../../library";
 import { WithInfo } from "../../../../library/Info/Info";
 import { Spacer } from "../../../../library/Spacer";
 import { enabledMachineConfigs } from "../../../../state/designConfig";
-import { MACHINES_TYPES } from "../../../../types/Machine";
+import { machineReadable, MACHINES_TYPES } from "../../../../types/Machine";
 import { SetBaseMachineClock } from "./SetBaseMachineClock";
 
 export const BaseMachineClock: React.FC = () => {
@@ -16,14 +16,13 @@ export const BaseMachineClock: React.FC = () => {
       <WithInfo infoText="Specify a base clock speed for each machine type.">
         <Select
           multiple
-          includeSelectAll
           maxDropdownHeight={200}
           label="Configure Machine Clockspeed"
           selected={enabledMachines}
           onSelectionChange={setEnabledMachines}
           options={MACHINES_TYPES.map((machineType) => ({
             value: machineType,
-            label: machineType,
+            label: machineReadable[machineType],
           }))}
         />
       </WithInfo>
