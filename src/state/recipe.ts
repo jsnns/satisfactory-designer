@@ -1,12 +1,12 @@
 import { atomFamily, selectorFamily } from "recoil";
 import { getRecipeChain } from "../data/recipies/chain";
-import { recipeBook } from "../data/recipies/default";
+import { RawResource, recipeBook } from "../data/recipies/default";
 import { Part } from "../types/Part";
 import { Recipe, RecipeChain, RecipePart } from "../types/Recipe";
-import { targetOutput } from "./output";
+import { targetOutput } from "./factoryOutput/atoms";
 
 export const selectedRecipe = atomFamily<Recipe, RecipePart>({
-  default: (parameter) => recipeBook[parameter],
+  default: (parameter) => recipeBook[parameter] || RawResource(parameter),
   key: "SelectedRecipe",
 });
 

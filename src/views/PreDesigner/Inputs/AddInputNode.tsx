@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { ManySelect } from "../../../library";
-import { enabledInputNodes } from "../../../state/input";
+import { Select } from "../../../library";
+import { factoryInputState } from "../../../state/factoryInput";
 import {
   ResourceNode,
   resourceNodeTypeReadable,
@@ -11,14 +11,17 @@ import {
 interface Props {}
 
 export const AddInputNode: React.FC<Props> = () => {
-  const [enabledNodes, setEnabledNodes] = useRecoilState(enabledInputNodes);
+  const [enabledNodes, setEnabledNodes] = useRecoilState(
+    factoryInputState.enabledInputNodes
+  );
 
   const addPart = (newEnabledNodes: ResourceNode[]) => {
     setEnabledNodes(newEnabledNodes);
   };
 
   return (
-    <ManySelect
+    <Select
+      multiple
       label="Factory Inputs"
       selected={enabledNodes}
       options={RESOURCE_NODE.map((nodeType) => ({

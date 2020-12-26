@@ -35,14 +35,15 @@
   }
 
   input {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
     background-color: $gray600;
     color: white;
     text-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
     border: none;
-    -webkit-appearance: none;
     outline: none;
-    -moz-appearance: textfield;
     flex-grow: 1;
+    max-width: 70px;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -58,5 +59,6 @@
     line-height: 16px;
     opacity: 0.6;
     user-select: none;
+    margin-bottom: 3px;
   }
 }

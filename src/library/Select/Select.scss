@@ -9,7 +9,6 @@
     background-color: $gray600;
     border-color: rgba(255, 255, 255, 0.1);
     min-height: 50px;
-    padding-left: 10px;
     user-select: none;
     display: flex;
     flex-direction: row;
@@ -22,14 +21,16 @@
       flex-grow: 1;
       white-space: nowrap;
       overflow-x: hidden;
+      height: 100%;
+      padding: 10px;
 
       p {
         height: 100%;
       }
     }
 
-    i {
-      min-width: 20px;
+    svg {
+      min-width: 30px;
     }
 
     label {
@@ -39,6 +40,7 @@
       height: 16px;
       line-height: 16px;
       opacity: 0.6;
+      margin-bottom: 3px;
     }
 
     &:hover {

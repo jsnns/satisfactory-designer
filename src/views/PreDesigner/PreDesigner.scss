@@ -11,6 +11,7 @@ $spacing: 5px;
   padding: $spacing;
   box-sizing: border-box;
   background-color: $gray900;
+  justify-content: space-between;
 
   .Center-- {
     display: flex;
@@ -29,8 +30,12 @@ $spacing: 5px;
   .Outputs-Container,
   .Center-- {
     display: flex;
-    min-height: 10px;
     margin: $spacing;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  .Preview-Container {
     flex-grow: 1;
   }
 }

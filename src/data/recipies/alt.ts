@@ -23,8 +23,8 @@ const CateriumComputer: Recipe = {
   name: "Caterium Computer",
   machine: "manufacturer",
   inputs: [
-    { part: "circut_board", perMin: 26.25 },
-    { part: "quick_wire", perMin: 150 },
+    { part: "circuit_board", perMin: 26.25 },
+    { part: "quickwire", perMin: 150 },
     { part: "rubber", perMin: 45 },
   ],
   output: {
@@ -38,10 +38,10 @@ const CateriumCircutBoard: Recipe = {
   machine: "assembler",
   inputs: [
     { part: "plastic", perMin: 12.5 },
-    { part: "quick_wire", perMin: 37.5 },
+    { part: "quickwire", perMin: 37.5 },
   ],
   output: {
-    part: "circut_board",
+    part: "circuit_board",
     perMin: 8.75,
   },
 };
@@ -54,7 +54,7 @@ const FusedQuickwire: Recipe = {
     { part: "copper_ingot", perMin: 37.5 },
   ],
   output: {
-    part: "quick_wire",
+    part: "quickwire",
     perMin: 90,
   },
 };
@@ -103,9 +103,9 @@ const SteelScrew: Recipe = {
 export const altRecipesFor: { [key in RecipePart]?: Recipe[] } = {
   screw: [SteelScrew],
   computer: [CateriumComputer],
-  circut_board: [CateriumCircutBoard],
+  circuit_board: [CateriumCircutBoard],
   caterium_ingot: [PureCateriumIngot],
   steel_ingot: [SolidSteelIngot],
   copper_ingot: [CopperAlloyIngot],
-  quick_wire: [FusedQuickwire],
+  quickwire: [FusedQuickwire],
 };

@@ -33,5 +33,12 @@
     z-index: $z--popover;
     font-size: 14px;
     box-shadow: $shalow-box;
+    color: white;
+    font-weight: normal;
+    font-size: 14px;
+
+    p:not(:first-child) {
+      margin-top: 10px;
+    }
   }
 }

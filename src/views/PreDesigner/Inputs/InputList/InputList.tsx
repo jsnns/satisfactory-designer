@@ -1,12 +1,12 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { Spacer } from "../../../../library/Spacer";
-import { enabledInputNodes } from "../../../../state/input";
-import { Node } from "./Node";
-import "./NodeList.scss";
+import { factoryInputState } from "../../../../state/factoryInput";
+import "./InputList.scss";
+import { Node } from "./InputRow";
 
 export const NodeList: React.FC = () => {
-  const inputNodes = useRecoilValue(enabledInputNodes);
+  const inputNodes = useRecoilValue(factoryInputState.enabledInputNodes);
 
   if (inputNodes.length === 0) return null;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { designerState } from "../../../state/designer";
+import { designerState } from "../../../state/layoutDesigner";
 import { PieceData } from "../../../types/Piece";
 
 export const DesignerMenu: React.FC = () => {

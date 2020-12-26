@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { NumberInput } from "../../../../library/NumberInput/NumberInput";
-import { maxByInput, targetOutput } from "../../../../state/output";
+import { factoryOutputState } from "../../../../state/factoryOutput";
 import { selectedRecipe } from "../../../../state/recipe";
 import { Part, partTypeReadable } from "../../../../types/Part";
 
@@ -10,9 +10,13 @@ interface Props {
 }
 
 export const PartOutputTarget: React.FC<Props> = ({ type }) => {
-  const [output, setOutput] = useRecoilState(targetOutput(type));
+  const [output, setOutput] = useRecoilState(
+    factoryOutputState.targetOutput(type)
+  );
   const recipe = useRecoilValue(selectedRecipe(type));
-  const max = useRecoilValue(maxByInput(type));
+  const max = useRecoilValue(
+    factoryOutputState.maxOutputTargetByInputResources(type)
+  );
 
   const baseFactor = recipe.output.perMin;
 
@@ -20,11 +24,11 @@ export const PartOutputTarget: React.FC<Props> = ({ type }) => {
     <NumberInput
       leftElement={
         <div className="ActionButtons">
-          {max > 0 && (
-            <button onClick={() => setOutput(max)}>Sync ({max})</button>
+          {max > 0 && max !== output && (
+            <button onClick={() => setOutput(max)}>Max ({max})</button>
           )}
           <button onClick={() => setOutput(baseFactor)}>
-            Base ({baseFactor})
+            Recipe ({baseFactor})
           </button>
           <button onClick={() => setOutput(output / 2)}>½</button>
           <button onClick={() => setOutput(output * 2)}>x2</button>

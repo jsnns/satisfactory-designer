@@ -1,3 +1,3 @@
-export const roundPerMin = (perMin: number): number => {
-  return Math.floor(perMin * 100) / 100;
-};
+import { round } from "lodash";
+
+export const roundPerMin = (perMin: number): number => round(perMin, 1);

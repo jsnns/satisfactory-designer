@@ -1,5 +1,6 @@
 @import "../../../../styles/colors.scss";
 @import "../../../../styles/styles.scss";
+@import "../../../../styles/fonts.scss";
 
 .Node {
   display: flex;
@@ -14,26 +15,37 @@
 
   .NodeBody {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     width: fit-content;
-    background-color: $gray600;
+    background-color: $gray800;
     padding: 10px;
     flex-grow: 1;
 
     .ResourceType {
-      font-size: 1.2em;
+      font-size: 1em;
       font-weight: bolder;
-      width: 100px;
+    }
+
+    .InputConfiguration {
+      display: flex;
+      flex-direction: row;
+
+      .ManySelectContainer,
+      .NumberInput {
+        width: 50%;
+        flex-grow: 1;
+      }
     }
 
     .NodeCounts {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
       flex-grow: 1;
+      background-color: $gray600;
 
       .Count {
+        padding: 10px 15px;
         display: flex;
         flex-direction: column;
         display: flex;
@@ -46,10 +58,6 @@
           margin-bottom: 3px;
         }
 
-        &:not(:first-child) {
-          margin-left: 25px;
-        }
-
         label {
           margin: 7px;
         }
@@ -58,6 +66,7 @@
           display: flex;
           flex-direction: row;
           align-items: center;
+
           button {
             background-color: $orange;
             border: none;

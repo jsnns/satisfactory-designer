@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { TreeView } from "../../../components/OutputTreeView/TreeView";
 import { Spacer } from "../../../library/Spacer";
-import { enabledOutputParts } from "../../../state/output";
+import { factoryOutputState } from "../../../state/factoryOutput";
 import { schematicState } from "../../../state/schematic";
 import "./Preview.scss";
 
 interface Props {}
 
 export const Preview: React.FC<Props> = () => {
-  const outputParts = useRecoilValue(enabledOutputParts);
+  const outputParts = useRecoilValue(factoryOutputState.enabledOutputParts);
   const schematic = useRecoilValue(schematicState);
 
   return (

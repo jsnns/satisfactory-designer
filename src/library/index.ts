@@ -1,2 +1,2 @@
 export { Checkbox } from "./Checkbox/Checkbox";
-export { ManySelect } from "./ManySelect/ManySelect";
+export { Select } from "./Select/Select";

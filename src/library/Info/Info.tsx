@@ -5,7 +5,7 @@ import { Spacer } from "../Spacer";
 import "./Info.scss";
 
 interface InfoProps {
-  infoText: string;
+  infoText: string | string[];
   direction?: "left" | "right";
   width?: number;
 }
@@ -42,7 +42,11 @@ export const Info: React.FC<InfoProps> = ({
               [direction]: 0,
             }}
           >
-            {infoText}
+            {infoText instanceof Array ? (
+              infoText.map((text) => <p>{text}</p>)
+            ) : (
+              <p>{infoText}</p>
+            )}
           </div>
         )}
       </div>

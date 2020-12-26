@@ -1,20 +1,23 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { ManySelect } from "../../../library";
-import { enabledOutputParts } from "../../../state/output";
+import { Select } from "../../../library";
+import { factoryOutputState } from "../../../state/factoryOutput";
 import { Part, PARTS, partTypeReadable } from "../../../types/Part";
 
 interface Props {}
 
 export const AddPart: React.FC<Props> = () => {
-  const [enabledParts, setEnabledParts] = useRecoilState(enabledOutputParts);
+  const [enabledParts, setEnabledParts] = useRecoilState(
+    factoryOutputState.enabledOutputParts
+  );
 
   const addPart = (newEnabledParts: Part[]) => {
     setEnabledParts(newEnabledParts);
   };
 
   return (
-    <ManySelect
+    <Select
+      multiple
       search
       selected={enabledParts}
       options={PARTS.map((partType) => ({

@@ -1,12 +1,18 @@
 export const RESOURCE_NODE = [
-  "copper",
   "iron",
+  "copper",
   "limestone",
   "coal",
-  "oil",
+  "uranium",
+  "sulfur",
+  "bauxite",
+  "quartz",
   "caterium",
   "water",
+  "oil",
 ] as const;
+
+export const NEEDS_PIPE: ResourceNode[] = ["oil", "water"];
 
 export const isResourceNodeType = (a: any): a is ResourceNode =>
   RESOURCE_NODE.includes(a);
@@ -14,7 +20,6 @@ export const isResourceNodeType = (a: any): a is ResourceNode =>
 export type ResourceNode = typeof RESOURCE_NODE[number];
 export const PURITY = ["pure", "normal", "impure"] as const;
 export type Purity = typeof PURITY[number];
-export type PurityCount = { [key in Purity]: number };
 
 export const purityReadbable: { [key in Purity]: string } = {
   impure: "Impure",
@@ -38,4 +43,8 @@ export const resourceNodeTypeReadable: {
   oil: "Oil",
   caterium: "Caterium",
   water: "Water",
+  bauxite: "Bauxite",
+  quartz: "Quartz",
+  sulfur: "Sulfur",
+  uranium: "Uranium",
 };

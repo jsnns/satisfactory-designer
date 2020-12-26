@@ -1,5 +1,4 @@
 import { Recipe, RecipePart } from "../../types/Recipe";
-import { ResourceNode } from "../../types/ResourceNode";
 
 export type RecipeBook = { [key in RecipePart]: Recipe };
 export type OptionalRecipeBook = { [key in RecipePart]?: Recipe };
@@ -195,7 +194,7 @@ const IronRod: Recipe = {
 export const Computer: Recipe = {
   machine: "manufacturer",
   inputs: [
-    { part: "circut_board", perMin: 25 },
+    { part: "circuit_board", perMin: 25 },
     { part: "cable", perMin: 22.5 },
     { part: "plastic", perMin: 45 },
     { part: "screw", perMin: 130 },
@@ -213,7 +212,7 @@ export const CircutBoard: Recipe = {
     { part: "copper_sheet", perMin: 15 },
   ],
   output: {
-    part: "circut_board",
+    part: "circuit_board",
     perMin: 7.5,
   },
 };
@@ -222,12 +221,12 @@ export const Quickwire: Recipe = {
   machine: "constructor",
   inputs: [{ part: "caterium_ingot", perMin: 12 }],
   output: {
-    part: "quick_wire",
+    part: "quickwire",
     perMin: 60,
   },
 };
 
-export const RawResource = (nodeType: ResourceNode): Recipe => ({
+export const RawResource = (nodeType: RecipePart): Recipe => ({
   machine: "miner",
   inputs: [],
   output: {
@@ -236,7 +235,7 @@ export const RawResource = (nodeType: ResourceNode): Recipe => ({
   },
 });
 
-export const recipeBook: RecipeBook = {
+export const recipeBook: OptionalRecipeBook = {
   steel_beam: SteelBeam,
   steel_pipe: SteelPipe,
   steel_ingot: SteelIngot,
@@ -248,8 +247,8 @@ export const recipeBook: RecipeBook = {
   heavy_modular_frame: HeavyModularFrame,
   iron_plate: IronPlate,
   computer: Computer,
-  circut_board: CircutBoard,
-  quick_wire: Quickwire,
+  circuit_board: CircutBoard,
+  quickwire: Quickwire,
   caterium_ingot: CateriumIngot,
   copper_ingot: CopperIngot,
   plastic: Plastic,
@@ -259,6 +258,124 @@ export const recipeBook: RecipeBook = {
   copper_sheet: CopperSheet,
   wire: Wire,
   iron_rod: IronRod,
+  ai_limiter: {
+    machine: "assembler",
+    inputs: [
+      { part: "copper_sheet", perMin: 25 },
+      { part: "quickwire", perMin: 100 },
+    ],
+    output: {
+      part: "ai_limiter",
+      perMin: 5,
+    },
+  },
+  adaptive_control_unit: {
+    machine: "manufacturer",
+    inputs: [
+      { part: "automated_wiring", perMin: 7.5 },
+      { part: "circuit_board", perMin: 5 },
+      { part: "heavy_modular_frame", perMin: 1 },
+      { part: "computer", perMin: 1 },
+    ],
+    output: {
+      part: "adaptive_control_unit",
+      perMin: 1,
+    },
+  },
+  alclad_aluminum_sheet: {
+    machine: "assembler",
+    inputs: [
+      { part: "aluminum_ingot", perMin: 60 },
+      { part: "copper_ingot", perMin: 22.5 },
+    ],
+    output: {
+      part: "alclad_aluminum_sheet",
+      perMin: 30,
+    },
+  },
+  aluminum_ingot: {
+    machine: "foundary",
+    inputs: [
+      { part: "aluminum_scrap", perMin: 240 },
+      { part: "silica", perMin: 140 },
+    ],
+    output: {
+      part: "aluminum_ingot",
+      perMin: 80,
+    },
+  },
+  aluminum_scrap: {
+    machine: "refinery",
+    inputs: [
+      { part: "alumina_solution", perMin: 240 },
+      { part: "petroleum_coke", perMin: 60 },
+    ],
+    // TODO: add additional water output
+    output: {
+      part: "aluminum_scrap",
+      perMin: 360,
+    },
+  },
+  alumina_solution: {
+    machine: "refinery",
+    inputs: [
+      { part: "bauxite", perMin: 70 },
+      { part: "water", perMin: 100 },
+    ],
+    // TODO: add waste product
+    output: {
+      part: "alumina_solution",
+      perMin: 80,
+    },
+  },
+  automated_wiring: {
+    machine: "assembler",
+    inputs: [
+      { part: "stator", perMin: 2.5 },
+      { part: "cable", perMin: 50 },
+    ],
+    output: {
+      part: "automated_wiring",
+      perMin: 2.5,
+    },
+  },
+  battery: {
+    machine: "manufacturer",
+    inputs: [
+      { part: "alclad_aluminum_sheet", perMin: 15 },
+      { part: "wire", perMin: 30 },
+      { part: "sulfur", perMin: 37.5 },
+      { part: "plastic", perMin: 15 },
+    ],
+    output: {
+      part: "battery",
+      perMin: 5.625,
+    },
+  },
+  biofuel: {
+    machine: "refinery",
+    inputs: [
+      { part: "solid_biofuel", perMin: 90 },
+      { part: "water", perMin: 45 },
+    ],
+    output: {
+      part: "biofuel",
+      perMin: 60,
+    },
+  },
+  black_powder: {
+    machine: "assembler",
+    inputs: [
+      { part: "coal", perMin: 7.5 },
+      { part: "sulfur", perMin: 15 },
+    ],
+    output: { part: "black_powder", perMin: 7.5 },
+  },
+  blue_ficsmas_ornament: {
+    machine: "smelter",
+    inputs: [{ part: "ficsmas_gift", perMin: 5 }],
+    output: { part: "blue_ficsmas_ornament", perMin: 10 },
+  },
   oil: RawResource("oil"),
   water: RawResource("water"),
   caterium: RawResource("caterium"),
@@ -266,4 +383,8 @@ export const recipeBook: RecipeBook = {
   iron: RawResource("iron"),
   copper: RawResource("copper"),
   limestone: RawResource("limestone"),
+  bauxite: RawResource("bauxite"),
+  quartz: RawResource("quartz"),
+  sulfur: RawResource("sulfur"),
+  uranium: RawResource("uranium"),
 };

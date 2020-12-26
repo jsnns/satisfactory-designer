@@ -1,6 +1,10 @@
+import {
+  InputConfiguration,
+  PurityCount,
+} from "../state/factoryInput/inputTypes";
 import { Part } from "./Part";
 import { Recipe } from "./Recipe";
-import { PurityCount, ResourceNode } from "./ResourceNode";
+import { ResourceNode } from "./ResourceNode";
 
 export interface Schematic {
   enabledInputResources: ResourceNode[];
@@ -8,6 +12,7 @@ export interface Schematic {
   inputs: {
     resource: ResourceNode;
     nodeCount: PurityCount;
+    inputConfiguration: InputConfiguration;
   }[];
   outputs: {
     part: Part;
