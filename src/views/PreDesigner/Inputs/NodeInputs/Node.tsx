@@ -3,7 +3,7 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useRecoilState } from "recoil";
 import { PartIcon } from "../../../../components/PartIcon/PartIcon";
 import { Spacer } from "../../../../library/Spacer";
-import { selectedInputNodes } from "../../../../state/input";
+import { factoryInputState } from "../../../../state/factoryInput";
 import {
   PURITY,
   Purity,
@@ -40,7 +40,9 @@ export const Count: React.FC<{
 };
 
 export const Node: React.FC<Props> = ({ type }) => {
-  const [nodeCount, setNodeCount] = useRecoilState(selectedInputNodes(type));
+  const [nodeCount, setNodeCount] = useRecoilState(
+    factoryInputState.selectedInputNodes(type)
+  );
 
   const add = (purity: Purity, change: number) => () => {
     const newCount = Math.max(nodeCount[purity] + change, 0);

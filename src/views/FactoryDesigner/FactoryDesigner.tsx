@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { Spacer } from "../../library/Spacer";
-import { designerState } from "../../state/designer";
+import { designerState } from "../../state/layoutDesigner";
 import { PieceData } from "../../types/Piece";
 import { Designer3D } from "./Designer3D";
 import { DesignerMenu } from "./DesignerMenu/DesignerMenu";

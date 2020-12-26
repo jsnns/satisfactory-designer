@@ -1,13 +1,15 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { minerTypeState } from "../../../../state/input";
+import { factoryInputState } from "../../../../state/factoryInput";
 import { MINER_TYPES } from "../../../../types/Miner";
 import "./MinerType.scss";
 
 interface Props {}
 
 export const MinerSpeed: React.FC<Props> = () => {
-  const [selectedMinerType, setMinerType] = useRecoilState(minerTypeState);
+  const [selectedMinerType, setMinerType] = useRecoilState(
+    factoryInputState.minerTypeState
+  );
 
   return (
     <div className="MinerType">

@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { sumProductionLineItems } from "../../../../data/recipies/chain";
-import { productionLineItems } from "../../../../state/output";
+import { factoryOutputState } from "../../../../state/factoryOutput";
 import { isPart } from "../../../../types/Part";
 import "./ProductionTable.scss";
 import { ProductionTableRow } from "./ProductionTableRow";
@@ -9,7 +9,7 @@ import { ProductionTableRow } from "./ProductionTableRow";
 interface Props {}
 
 export const ProductionTable: React.FC<Props> = () => {
-  const lineItems = useRecoilValue(productionLineItems);
+  const lineItems = useRecoilValue(factoryOutputState.productionLineItems);
   const summedLineItems = sumProductionLineItems(lineItems)
     .filter(({ part }) => isPart(part))
     .sort((a, b) => b.perMin - a.perMin);

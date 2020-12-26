@@ -1,13 +1,13 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { NumberInput } from "../../../../library/NumberInput/NumberInput";
 import { normalizeOverclockSpeed } from "../../../../data/normalize";
-import { overclockSpeedState } from "../../../../state/input";
+import { NumberInput } from "../../../../library/NumberInput/NumberInput";
+import { factoryInputState } from "../../../../state/factoryInput";
 import "./Overclock.scss";
 
 export const Overclock: React.FC = () => {
   const [overclockSpeed, setOverclockSpeed] = useRecoilState(
-    overclockSpeedState
+    factoryInputState.overclockSpeedState
   );
 
   const updateOverclockSpeed = (newSpeed: number) => {

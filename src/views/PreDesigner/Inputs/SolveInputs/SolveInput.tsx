@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { roundPerMin } from "../../../../data/round";
-import { requiredInput, totalRawInput } from "../../../../state/input";
+import { factoryInputState } from "../../../../state/factoryInput";
 import {
   ResourceNode,
   resourceNodeTypeReadable,
@@ -12,8 +12,8 @@ interface Props {
 }
 
 export const SolveInput: React.FC<Props> = ({ node }) => {
-  const required = useRecoilValue(requiredInput(node));
-  const specified = useRecoilValue(totalRawInput(node));
+  const required = useRecoilValue(factoryInputState.requiredInput(node));
+  const specified = useRecoilValue(factoryInputState.totalRawInput(node));
   if (specified >= required) return null;
 
   return (

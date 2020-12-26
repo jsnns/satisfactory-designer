@@ -1,25 +1,16 @@
-import { atom, atomFamily, selector, selectorFamily } from "recoil";
+import { selector, selectorFamily } from "recoil";
 import {
   buildProductionLineItemSum,
   getProductionLineItems,
   getRawInputRequired,
   getRecipeChain,
-} from "../data/recipies/chain";
-import { roundPerMin } from "../data/round";
-import { Part } from "../types/Part";
-import { RecipeChain, RecipePart } from "../types/Recipe";
-import { totalRawInput } from "./input";
-import { recipeChain } from "./recipe";
-
-export const enabledOutputParts = atom<Part[]>({
-  default: [],
-  key: "EnabledOutputParts",
-});
-
-export const targetOutput = atomFamily<number, Part>({
-  key: "TargetOutput",
-  default: 0,
-});
+} from "../../data/recipies/chain";
+import { roundPerMin } from "../../data/round";
+import { Part } from "../../types/Part";
+import { RecipeChain, RecipePart } from "../../types/Recipe";
+import { totalRawInput } from "../factoryInput/selectors";
+import { recipeChain } from "../recipe";
+import { enabledOutputParts, targetOutput } from "./atoms";
 
 export const productionLineItems = selector<
   { part: RecipePart; perMin: number }[]

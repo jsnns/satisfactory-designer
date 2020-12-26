@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { ManySelect } from "../../../library";
-import { enabledInputNodes } from "../../../state/input";
+import { factoryInputState } from "../../../state/factoryInput";
 import {
   ResourceNode,
   resourceNodeTypeReadable,
@@ -11,7 +11,9 @@ import {
 interface Props {}
 
 export const AddInputNode: React.FC<Props> = () => {
-  const [enabledNodes, setEnabledNodes] = useRecoilState(enabledInputNodes);
+  const [enabledNodes, setEnabledNodes] = useRecoilState(
+    factoryInputState.enabledInputNodes
+  );
 
   const addPart = (newEnabledNodes: ResourceNode[]) => {
     setEnabledNodes(newEnabledNodes);

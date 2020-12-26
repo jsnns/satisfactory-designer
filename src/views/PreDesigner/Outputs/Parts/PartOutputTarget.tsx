@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { NumberInput } from "../../../../library/NumberInput/NumberInput";
-import { maxByInput, targetOutput } from "../../../../state/output";
+import { factoryOutputState } from "../../../../state/factoryOutput";
 import { selectedRecipe } from "../../../../state/recipe";
 import { Part, partTypeReadable } from "../../../../types/Part";
 
@@ -10,9 +10,11 @@ interface Props {
 }
 
 export const PartOutputTarget: React.FC<Props> = ({ type }) => {
-  const [output, setOutput] = useRecoilState(targetOutput(type));
+  const [output, setOutput] = useRecoilState(
+    factoryOutputState.targetOutput(type)
+  );
   const recipe = useRecoilValue(selectedRecipe(type));
-  const max = useRecoilValue(maxByInput(type));
+  const max = useRecoilValue(factoryOutputState.maxByInput(type));
 
   const baseFactor = recipe.output.perMin;
 

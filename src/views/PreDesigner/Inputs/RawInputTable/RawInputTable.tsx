@@ -1,13 +1,13 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { enabledInputNodes } from "../../../../state/input";
+import { factoryInputState } from "../../../../state/factoryInput";
 import { InputTableRow } from "./InputTableRow";
 import "./RawInputTable.scss";
 
 interface Props {}
 
 export const RawInputTable: React.FC<Props> = () => {
-  const enabledNodes = useRecoilValue(enabledInputNodes);
+  const enabledNodes = useRecoilValue(factoryInputState.enabledInputNodes);
 
   if (enabledNodes.length === 0) {
     return <span className="Info">No Inputs Specified</span>;

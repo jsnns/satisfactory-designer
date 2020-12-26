@@ -2,12 +2,12 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import { PartIcon } from "../../../../components/PartIcon/PartIcon";
 import { Spacer } from "../../../../library/Spacer";
-import { enabledOutputParts } from "../../../../state/output";
+import { factoryOutputState } from "../../../../state/factoryOutput";
 import "./PartList.scss";
 import { PartOutputTarget } from "./PartOutputTarget";
 
 export const PartList: React.FC = () => {
-  const enabledParts = useRecoilValue(enabledOutputParts);
+  const enabledParts = useRecoilValue(factoryOutputState.enabledOutputParts);
 
   return (
     <div className="ListResourceNodes">
