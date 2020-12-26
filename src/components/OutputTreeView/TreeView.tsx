@@ -15,7 +15,7 @@ interface RecipeProps {
   chain: RecipeChain;
 }
 
-const colors = ["#FA9549", "#6CA8D4", "#E87D4D", "#86A294", "#BBDE92"];
+const colors = ["#6CA8D4", "#FA9549", "#86A294", "#E87D4D", "#BBDE92"];
 
 const Recipe: React.FC<RecipeProps> = ({ chain, level = 0 }) => {
   return (
