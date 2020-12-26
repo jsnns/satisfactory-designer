@@ -1,11 +1,8 @@
 import React from "react";
-import { WithInfo } from "../../../library/Info/Info";
 import { Spacer } from "../../../library/Spacer";
 import { AddInputNode } from "./AddInputNode";
+import { NodeList } from "./InputList/InputList";
 import "./Inputs.scss";
-import { MinerSpeed } from "./MinerType/MinerType";
-import { NodeList } from "./NodeInputs/NodeList";
-import { Overclock } from "./Overclock/Overclock";
 import { RawInputTable } from "./RawInputTable/RawInputTable";
 import { SolveInputs } from "./SolveInputs/SolveInputs";
 
@@ -19,16 +16,6 @@ export const Inputs: React.FC = () => {
           <AddInputNode />
           <Spacer size="medium" />
           <NodeList />
-          <Spacer size="large" />
-        </div>
-        <div className="MinerConfiguration">
-          <WithInfo infoText="Which miner type do you plan to use?">
-            <h3>Miner Configuration</h3>
-          </WithInfo>
-          <Spacer size="small" />
-          <MinerSpeed />
-          <Spacer size="small" />
-          <Overclock />
           <Spacer size="large" />
         </div>
         <div className="RawInputsTable">

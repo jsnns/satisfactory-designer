@@ -1,6 +1,7 @@
 import { atom, atomFamily } from "recoil";
 import { MinerType } from "../../types/Miner";
-import { PurityCount, ResourceNode } from "../../types/ResourceNode";
+import { ResourceNode } from "../../types/ResourceNode";
+import { PurityCount } from "./inputTypes";
 
 export const enabledInputNodes = atom<ResourceNode[]>({
   default: [],
@@ -16,12 +17,12 @@ export const input = atomFamily<PurityCount, ResourceNode>({
   },
 });
 
-export const minerTypeState = atom<MinerType>({
-  key: "MinerSpeed",
+export const minerType = atomFamily<MinerType, ResourceNode>({
+  key: "MinerType",
   default: "Miner Mk 1.",
 });
 
-export const overclockSpeedState = atom<number>({
-  key: "OverclockSpeed",
+export const overclockMultipler = atomFamily<number, ResourceNode>({
+  key: "OverclockMultipler",
   default: 1,
 });

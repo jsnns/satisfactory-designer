@@ -1,10 +1,11 @@
 import classNames from "classnames";
 import React, { Component } from "react";
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { Checkbox } from "..";
 import HandleClickOutside from "../HandleClickOutside";
 import { ListenForKeyPress } from "../ListenForKeyPress";
 import { StringInput } from "../NumberInput/NumberInput";
-import "./ManySelect.scss";
+import "./Select.scss";
 
 interface Option<T> {
   value: T;
@@ -17,6 +18,7 @@ interface ManySelectProps<OptionT> {
   onSelectionChange: (option: OptionT[]) => void;
 
   // optional
+  multiple?: boolean;
   label?: string;
   includeSelectAll?: boolean;
   keyPrefix?: string;
@@ -50,7 +52,7 @@ interface ManySelectState {
  * @param defaultOptionLabel when an option's label is not provided we will use defaultOptionLabel then the option value
  *
  */
-export class ManySelect<OptionT> extends Component<
+export class Select<OptionT> extends Component<
   ManySelectProps<OptionT>,
   ManySelectState
 > {
@@ -74,6 +76,8 @@ export class ManySelect<OptionT> extends Component<
   };
 
   onSelectOption = (value: OptionT) => {
+    if (!this.props.multiple) return this.props.onSelectionChange([value]);
+
     // init selection to copy of the current selection
     let newSelection = [...this.props.selected];
 
@@ -163,6 +167,13 @@ export class ManySelect<OptionT> extends Component<
               <div className="ManySelectBody">
                 {label && <label>{label}</label>}
                 <p className="SelectedText">{this.selectedTextLabel}</p>
+              </div>
+              <div className="Icon">
+                {this.state.dropdownOpen ? (
+                  <AiFillCaretUp />
+                ) : (
+                  <AiFillCaretDown />
+                )}
               </div>
             </div>
             {this.state.dropdownOpen && (

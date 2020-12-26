@@ -1,6 +1,7 @@
+import { PurityCount } from "../state/factoryInput/inputTypes";
 import { Part } from "./Part";
 import { Recipe } from "./Recipe";
-import { PurityCount, ResourceNode } from "./ResourceNode";
+import { ResourceNode } from "./ResourceNode";
 
 export interface Schematic {
   enabledInputResources: ResourceNode[];

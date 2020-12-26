@@ -43,6 +43,7 @@
     outline: none;
     -moz-appearance: textfield;
     flex-grow: 1;
+    max-width: 100%;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {

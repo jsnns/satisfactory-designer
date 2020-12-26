@@ -14,7 +14,7 @@ export const schematicState = selector<Schematic>({
       enabledInputResources: inputResources,
       inputs: inputResources.map((resource) => ({
         resource,
-        nodeCount: get(factoryInputState.selectedInputNodes(resource)),
+        nodeCount: get(factoryInputState.input(resource)),
       })),
       enabledOutputParts: outputParts,
       outputs: outputParts.map((part) => ({
@@ -24,7 +24,7 @@ export const schematicState = selector<Schematic>({
       })),
     };
   },
-  set: ({ get, set }, newSchematic) => {
+  set: ({ set }, newSchematic) => {
     if (newSchematic instanceof DefaultValue) return;
 
     set(factoryOutputState.enabledOutputParts, newSchematic.enabledOutputParts);
@@ -38,7 +38,7 @@ export const schematicState = selector<Schematic>({
       newSchematic.enabledInputResources
     );
     newSchematic.inputs.forEach(({ resource, nodeCount }) => {
-      set(factoryInputState.selectedInputNodes(resource), nodeCount);
+      set(factoryInputState.input(resource), nodeCount);
     });
   },
 });

@@ -4,22 +4,18 @@ import { buildProductionLineItemSum } from "../../data/recipies/chain";
 import { multipleForMinerType } from "../../types/Miner";
 import { ResourceNode } from "../../types/ResourceNode";
 import { productionLineItems } from "../factoryOutput/selectors";
-import {
-  minerTypeState,
-  overclockSpeedState,
-  input,
-} from "./atoms";
+import { input, minerType, overclockMultipler } from "./atoms";
+import { InputConfiguration } from "./inputTypes";
 
 export const totalRawInput = selectorFamily<number, ResourceNode>({
   key: "RawInputValues",
   get: (nodeType) => ({ get }) => {
     const nodeCount = get(input(nodeType));
-    const minerType = get(minerTypeState);
-    const overclock = get(overclockSpeedState);
+    const { minerType, overclockMultipler } = get(inputConfiguration(nodeType));
 
     return totalResourcesFromNodeCount(
       nodeCount,
-      overclock,
+      overclockMultipler,
       multipleForMinerType[minerType]
     );
   },
@@ -31,5 +27,18 @@ export const requiredInput = selectorFamily<number, ResourceNode>({
     const sum = buildProductionLineItemSum(get(productionLineItems));
 
     return sum[nodeType] || 0;
+  },
+});
+
+export const inputConfiguration = selectorFamily<
+  InputConfiguration,
+  ResourceNode
+>({
+  key: "InputConfiguration",
+  get: (nodeType) => ({ get }) => {
+    return {
+      minerType: get(minerType(nodeType)),
+      overclockMultipler: get(overclockMultipler(nodeType)),
+    };
   },
 });

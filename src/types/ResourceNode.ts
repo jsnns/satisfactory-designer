@@ -14,7 +14,6 @@ export const isResourceNodeType = (a: any): a is ResourceNode =>
 export type ResourceNode = typeof RESOURCE_NODE[number];
 export const PURITY = ["pure", "normal", "impure"] as const;
 export type Purity = typeof PURITY[number];
-export type PurityCount = { [key in Purity]: number };
 
 export const purityReadbable: { [key in Purity]: string } = {
   impure: "Impure",

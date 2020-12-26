@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { ManySelect } from "../../../library";
+import { Select } from "../../../library";
 import { factoryOutputState } from "../../../state/factoryOutput";
 import { Part, PARTS, partTypeReadable } from "../../../types/Part";
 
@@ -16,7 +16,8 @@ export const AddPart: React.FC<Props> = () => {
   };
 
   return (
-    <ManySelect
+    <Select
+      multiple
       search
       selected={enabledParts}
       options={PARTS.map((partType) => ({

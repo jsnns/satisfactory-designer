@@ -1,8 +1,5 @@
-import {
-  PurityCount,
-  multiplierForPurity,
-  Purity,
-} from "../types/ResourceNode";
+import { PurityCount } from "../state/factoryInput/inputTypes";
+import { multiplierForPurity, Purity } from "../types/ResourceNode";
 
 export const calclateNodeOutput = (
   purity: Purity,

@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import { ManySelect } from "../../../../library";
+import { Select } from "../../../../library";
 import { WithInfo } from "../../../../library/Info/Info";
 import { Spacer } from "../../../../library/Spacer";
 import { enabledMachineConfigs } from "../../../../state/designConfig";
@@ -14,7 +14,8 @@ export const BaseMachineClock: React.FC = () => {
   return (
     <div>
       <WithInfo infoText="Specify a base clock speed for each machine type.">
-        <ManySelect
+        <Select
+          multiple
           includeSelectAll
           maxDropdownHeight={200}
           label="Configure Machine Clockspeed"
