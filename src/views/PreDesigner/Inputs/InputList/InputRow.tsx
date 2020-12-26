@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { PartIcon } from "../../../../components/PartIcon/PartIcon";
 import { normalizeOverclockSpeed } from "../../../../data/normalize";
 import { Select } from "../../../../library";
+import { WithInfo } from "../../../../library/Info/Info";
 import { NumberInput } from "../../../../library/NumberInput/NumberInput";
 import { Spacer } from "../../../../library/Spacer";
 import { factoryInputState } from "../../../../state/factoryInput";
@@ -42,9 +43,13 @@ export const Node: React.FC<Props> = ({ type }) => {
       <PartIcon part={type} />
       <div className="NodeBody">
         <div className="BoxLabel ResourceType">
-          <span>{resourceNodeTypeReadable[type]}</span>
+          <WithInfo
+            infoText={`Configure the number nodes and miners used for ${resourceNodeTypeReadable[type]} nodes.`}
+          >
+            <span>{resourceNodeTypeReadable[type]}</span>
+          </WithInfo>
         </div>
-        <Spacer size="small" />
+        <Spacer size="medium" />
         <div className="NodeCounts">
           {PURITY.map((purity) => (
             <Count
@@ -58,14 +63,6 @@ export const Node: React.FC<Props> = ({ type }) => {
         </div>
         <Spacer size="small" />
         <div className="InputConfiguration">
-          <NumberInput
-            label="Miner Overclock"
-            onChange={(newOverclock) =>
-              setOverclock(normalizeOverclockSpeed(newOverclock))
-            }
-            value={overclock}
-          />
-          <Spacer size="small" />
           <Select
             selected={[minerType]}
             options={MINER_TYPES.map((minerType) => ({
@@ -75,6 +72,14 @@ export const Node: React.FC<Props> = ({ type }) => {
             onSelectionChange={(newMinerType: MinerType[]) =>
               setMinerType(newMinerType[0])
             }
+          />
+          <Spacer size="small" />
+          <NumberInput
+            label="Miner Overclock"
+            onChange={(newOverclock) =>
+              setOverclock(normalizeOverclockSpeed(newOverclock))
+            }
+            value={overclock}
           />
         </div>
       </div>

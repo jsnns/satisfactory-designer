@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
+@import "./colors.scss";
 
 body {
   font-family: "Open Sans", sans-serif;
@@ -21,7 +22,7 @@ body {
   font-weight: normal;
   height: 16px;
   line-height: 16px;
-  opacity: 0.6;
+  color: rgba($gray50, 0.7);
 }
 
 p,

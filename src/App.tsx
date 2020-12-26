@@ -28,7 +28,9 @@ function App() {
           <h1>Ficsit Field Planner</h1>
         </div>
         <div className="Menu">
-          {schematic.enabledOutputParts.length > 0 && (
+          {schematic.enabledOutputParts.length +
+            schematic.enabledInputResources.length >
+            0 && (
             <a
               href={`https://app.satisfactorydesigner.com/?schematic=${serializeSchematic(
                 schematic

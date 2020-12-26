@@ -42,7 +42,7 @@ export const Info: React.FC<InfoProps> = ({
               [direction]: 0,
             }}
           >
-            {infoText}
+            <p>{infoText}</p>
           </div>
         )}
       </div>

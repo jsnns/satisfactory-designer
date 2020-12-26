@@ -1,4 +1,4 @@
-import { selectorFamily } from "recoil";
+import { DefaultValue, selectorFamily } from "recoil";
 import { totalResourcesFromNodeCount } from "../../data/inputCalculations";
 import { buildProductionLineItemSum } from "../../data/recipies/chain";
 import { multipleForMinerType } from "../../types/Miner";
@@ -40,5 +40,10 @@ export const inputConfiguration = selectorFamily<
       minerType: get(minerType(nodeType)),
       overclockMultipler: get(overclockMultipler(nodeType)),
     };
+  },
+  set: (nodeType) => ({ get, set }, newValue) => {
+    if (newValue instanceof DefaultValue) return;
+    set(minerType(nodeType), newValue.minerType);
+    set(overclockMultipler(nodeType), newValue.overclockMultipler);
   },
 });

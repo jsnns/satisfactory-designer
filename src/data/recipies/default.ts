@@ -195,7 +195,7 @@ const IronRod: Recipe = {
 export const Computer: Recipe = {
   machine: "manufacturer",
   inputs: [
-    { part: "circut_board", perMin: 25 },
+    { part: "circuit_board", perMin: 25 },
     { part: "cable", perMin: 22.5 },
     { part: "plastic", perMin: 45 },
     { part: "screw", perMin: 130 },
@@ -213,7 +213,7 @@ export const CircutBoard: Recipe = {
     { part: "copper_sheet", perMin: 15 },
   ],
   output: {
-    part: "circut_board",
+    part: "circuit_board",
     perMin: 7.5,
   },
 };
@@ -248,7 +248,7 @@ export const recipeBook: RecipeBook = {
   heavy_modular_frame: HeavyModularFrame,
   iron_plate: IronPlate,
   computer: Computer,
-  circut_board: CircutBoard,
+  circuit_board: CircutBoard,
   quick_wire: Quickwire,
   caterium_ingot: CateriumIngot,
   copper_ingot: CopperIngot,

@@ -1,6 +1,7 @@
 import { DefaultValue, selector } from "recoil";
 import { Schematic } from "../types/Schematic";
 import { factoryInputState } from "./factoryInput";
+import { inputConfiguration } from "./factoryInput/selectors";
 import { factoryOutputState } from "./factoryOutput";
 import { selectedRecipe } from "./recipe";
 
@@ -15,6 +16,7 @@ export const schematicState = selector<Schematic>({
       inputs: inputResources.map((resource) => ({
         resource,
         nodeCount: get(factoryInputState.input(resource)),
+        inputConfiguration: get(inputConfiguration(resource)),
       })),
       enabledOutputParts: outputParts,
       outputs: outputParts.map((part) => ({
@@ -37,8 +39,11 @@ export const schematicState = selector<Schematic>({
       factoryInputState.enabledInputNodes,
       newSchematic.enabledInputResources
     );
-    newSchematic.inputs.forEach(({ resource, nodeCount }) => {
-      set(factoryInputState.input(resource), nodeCount);
-    });
+    newSchematic.inputs.forEach(
+      ({ resource, nodeCount, inputConfiguration }) => {
+        set(factoryInputState.input(resource), nodeCount);
+        set(factoryInputState.inputConfiguration(resource), inputConfiguration);
+      }
+    );
   },
 });
