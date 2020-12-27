@@ -64,7 +64,7 @@ const ModularFrame: Recipe = {
   machine: "assembler",
   inputs: [
     { part: "steel_pipe", perMin: 10 },
-    { part: "recinforced_plate", perMin: 2 },
+    { part: "reinforced_plate", perMin: 2 },
   ],
   output: {
     part: "modular_frame",
@@ -88,7 +88,7 @@ const ReinforcedIronPlate: Recipe = {
     { part: "screw", perMin: 60 },
   ],
   output: {
-    part: "recinforced_plate",
+    part: "reinforced_plate",
     perMin: 5,
   },
 };
@@ -241,7 +241,7 @@ export const recipeBook: OptionalRecipeBook = {
   steel_ingot: SteelIngot,
   iron_ingot: IronIngot,
   modular_frame: ModularFrame,
-  recinforced_plate: ReinforcedIronPlate,
+  reinforced_plate: ReinforcedIronPlate,
   screw: Screw,
   industrial_beam: IndustrialBeam,
   heavy_modular_frame: HeavyModularFrame,

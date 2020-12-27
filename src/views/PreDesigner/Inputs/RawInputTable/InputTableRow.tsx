@@ -15,8 +15,6 @@ export const InputTableRow: React.FC<Props> = ({ type }) => {
   const rawInputTotal = useRecoilValue(factoryInputState.totalRawInput(type));
   const required = useRecoilValue(factoryInputState.requiredInput(type));
 
-  if (rawInputTotal === 0) return null;
-
   return (
     <tr>
       <td className="Cell">{resourceNodeTypeReadable[type]}</td>

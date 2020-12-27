@@ -9,10 +9,15 @@
       background-color: $gray800;
     }
 
-    thead {
+    th {
       font-weight: bold;
       text-decoration: underline;
       text-align: left;
+      padding: 10px;
+    }
+
+    td {
+      padding: 10px;
     }
   }
 }

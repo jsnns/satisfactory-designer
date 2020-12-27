@@ -4,3 +4,14 @@ span.At {
   color: $gray100;
   opacity: 0.7;
 }
+
+img {
+  height: 20px;
+  width: 20px;
+}
+
+.DescribeRecipe {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

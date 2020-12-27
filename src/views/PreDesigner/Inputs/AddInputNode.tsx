@@ -22,6 +22,7 @@ export const AddInputNode: React.FC<Props> = () => {
   return (
     <Select
       multiple
+      search
       label="Factory Inputs"
       selected={enabledNodes}
       options={RESOURCE_NODE.map((nodeType) => ({

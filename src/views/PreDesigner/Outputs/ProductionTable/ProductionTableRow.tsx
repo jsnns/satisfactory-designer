@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { getRecipeName } from "../../../../data/getRecipeName";
 import { roundPerMin } from "../../../../data/round";
 import { currentModal } from "../../../../state/modal";
@@ -18,7 +18,7 @@ export const ProductionTableRow: React.FC<Props> = ({
   perMin,
   isOutputPart,
 }) => {
-  const recipe = useRecoilValue(selectedRecipe(part));
+  const [recipe] = useRecoilState(selectedRecipe(part));
   const [, setModal] = useRecoilState(currentModal);
 
   const openModal = () => {
