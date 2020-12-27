@@ -61,7 +61,7 @@ export const maxOutputTargetByInputResources = selectorFamily<number, Part>({
       })
       .filter((num) => !isNaN(num));
 
-    return roundPerMin(Math.min(...constrainBy) || 0) + get(targetOutput(part));
+    return roundPerMin(Math.min(...constrainBy) || 0 + get(targetOutput(part)));
   },
 });
 
