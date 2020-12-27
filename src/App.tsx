@@ -9,7 +9,7 @@ import {
 } from "./data/schematicTools";
 import Satisfactory from "./images/logo/Satisfactory.png";
 import { schematicState } from "./state/schematic";
-import { Designer } from "./views/Designer";
+import { Designer } from "./views/FactoryDesigner/Designer";
 import { PreDesigner } from "./views/PreDesigner/PreDesigner";
 
 function App() {

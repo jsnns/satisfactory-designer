@@ -23,6 +23,7 @@ export const SelectRecipeModal: React.FC<Props> = ({ part }) => {
         .concat(altRecipesFor[part] || [])
         .map((altRecipe) => (
           <Checkbox
+            key={`selectRecipeModal${part}${getRecipeName(altRecipe)}`}
             onChange={() => setRecipe(altRecipe)}
             label={getRecipeName(altRecipe)}
             checked={getRecipeName(recipe) === getRecipeName(altRecipe)}
