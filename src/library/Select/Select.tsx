@@ -156,25 +156,19 @@ export class Select<OptionT> extends Component<
     );
   };
 
-  getOptions = (selected: boolean): Option<OptionT>[] => {
-    const os = [...this.props.options]
-      .filter((option) => {
-        if (!this.props.search) return true;
-        if (this.props.search && this.state.searchString) {
-          return (
-            option.label
-              .toLowerCase()
-              .indexOf(this.state.searchString.toLowerCase()) > -1
-          );
-        }
+  getOptions = (): Option<OptionT>[] => {
+    return this.props.options.filter((option) => {
+      if (!this.props.search) return true;
+      if (this.props.search && this.state.searchString) {
+        return (
+          option.label
+            .toLowerCase()
+            .indexOf(this.state.searchString.toLowerCase()) > -1
+        );
+      }
 
-        return true;
-      })
-      .filter((option) => this.isOptionSelected(option.value) === selected);
-
-    console.log({ [`os-${selected}`]: os });
-
-    return os;
+      return true;
+    });
   };
 
   render() {
@@ -226,8 +220,7 @@ export class Select<OptionT> extends Component<
                     />
                   </div>
                 )}
-                {this.getOptions(true).map(this.renderOption)}
-                {this.getOptions(false).map(this.renderOption)}
+                {this.getOptions().map(this.renderOption)}
               </div>
             )}
           </div>
