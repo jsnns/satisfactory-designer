@@ -1,9 +1,12 @@
 .Inputs {
   width: 100%;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 
   .Body {
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 }

@@ -6,7 +6,7 @@
 
   .Link {
     text-decoration: underline;
-    color: $orange;
+    color: lighten($orange, 10%);
     cursor: pointer;
   }
 }

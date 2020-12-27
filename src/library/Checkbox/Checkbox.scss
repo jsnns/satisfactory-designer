@@ -21,6 +21,7 @@
     }
 
     .Checkmark {
+      flex-shrink: 0;
       height: 15px;
       width: 15px;
       display: flex;

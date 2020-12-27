@@ -24,6 +24,7 @@ export const Inputs: React.FC = () => {
           <RawInputTable />
           <Spacer size="large" />
         </div>
+        <Spacer size="grow" />
         <div className="SolveInputs">
           <SolveInputs />
           <Spacer size="large" />

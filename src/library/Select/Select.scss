@@ -8,11 +8,11 @@
     text-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
     background-color: $gray600;
     border-color: rgba(255, 255, 255, 0.1);
-    min-height: 50px;
     user-select: none;
     display: flex;
     flex-direction: row;
     align-items: center;
+    min-height: 35px;
 
     .ManySelectBody {
       display: flex;

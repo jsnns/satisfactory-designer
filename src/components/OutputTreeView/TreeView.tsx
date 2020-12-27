@@ -5,6 +5,7 @@ import { Part } from "../../types/Part";
 import { RecipeChain } from "../../types/Recipe";
 import { DescribeRaw } from "../Recipe/DescribeRaw";
 import { DescribeRecipe } from "../Recipe/DescribeRecipe";
+import "./TreeView.scss";
 
 interface Props {
   type: Part;
@@ -45,7 +46,7 @@ export const TreeView: React.FC<Props> = ({ type }) => {
   if (chain.machinesNeeded === 0) return null;
 
   return (
-    <div>
+    <div className="TreeView">
       <Recipe chain={chain} />
     </div>
   );

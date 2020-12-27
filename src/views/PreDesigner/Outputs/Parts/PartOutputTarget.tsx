@@ -24,7 +24,7 @@ export const PartOutputTarget: React.FC<Props> = ({ type }) => {
     <NumberInput
       leftElement={
         <div className="ActionButtons">
-          {max > 0 && max !== output && (
+          {max > 0 && max !== output && max !== Infinity && (
             <button onClick={() => setOutput(max)}>Max ({max})</button>
           )}
           <button onClick={() => setOutput(baseFactor)}>

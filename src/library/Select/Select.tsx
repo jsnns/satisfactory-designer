@@ -227,7 +227,6 @@ export class Select<OptionT> extends Component<
                   </div>
                 )}
                 {this.getOptions(true).map(this.renderOption)}
-                {this.props.selected.length > 0 && <hr />}
                 {this.getOptions(false).map(this.renderOption)}
               </div>
             )}
