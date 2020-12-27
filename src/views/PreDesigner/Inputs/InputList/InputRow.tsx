@@ -40,13 +40,15 @@ export const Node: React.FC<Props> = ({ type }) => {
 
   return (
     <div className="Node">
-      <PartIcon part={type} />
       <div className="NodeBody">
         <div className="BoxLabel ResourceType">
           <WithInfo
             infoText={`Configure the number nodes and miners used for ${resourceNodeTypeReadable[type]} nodes.`}
           >
-            <span>{resourceNodeTypeReadable[type]}</span>
+            <span>
+              {resourceNodeTypeReadable[type]}
+              <PartIcon part={type} />
+            </span>
           </WithInfo>
         </div>
         <Spacer size="medium" />

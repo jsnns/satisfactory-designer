@@ -12,11 +12,17 @@
   .Logo {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    text-transform: uppercase;
+    color: $gray50;
+    opacity: 0.9;
     flex-grow: 1;
 
     h1 {
       font-size: 1.9rem;
       margin-left: 10px;
+      height: fit-content;
+      letter-spacing: -1px;
     }
 
     img {
