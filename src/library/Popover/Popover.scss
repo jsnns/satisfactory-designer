@@ -1,0 +1,37 @@
+@import "../../styles/colors.scss";
+@import "../../styles/zindex.scss";
+@import "../../styles/shadows.scss";
+
+.WithPopover {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  .Content {
+    flex-grow: 1;
+  }
+}
+
+.Popover {
+  user-select: none;
+  background-color: $gray700;
+  opacity: 1;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: $z--popover;
+  font-size: 14px;
+  box-shadow: $shalow-box;
+  color: white;
+  font-weight: normal;
+  font-size: 14px;
+  top: 100%;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+
+  p:not(:first-child) {
+    margin-top: 10px;
+  }
+}

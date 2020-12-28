@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import React from "react";
 import { useRecoilState } from "recoil";
+import { PerMin } from "../../../../components/PerMin/PerMin";
 import { getRecipeName } from "../../../../data/getRecipeName";
-import { roundPerMin } from "../../../../data/round";
 import { currentModal } from "../../../../state/modal";
 import { selectedRecipe } from "../../../../state/recipe";
 import { RecipePart, recipePartReadable } from "../../../../types/Recipe";
@@ -37,7 +37,9 @@ export const ProductionTableRow: React.FC<Props> = ({
       >
         {recipePartReadable(part)}
       </td>
-      <td>{roundPerMin(perMin)}/min</td>
+      <td>
+        <PerMin perMin={perMin} />
+      </td>
       <td>
         <span className="Link" onClick={openModal}>
           {getRecipeName(recipe)}

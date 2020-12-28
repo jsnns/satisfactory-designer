@@ -14,3 +14,12 @@ span.At {
     width: 20px;
   }
 }
+
+.RowBody {
+  display: inherit;
+  align-items: center;
+  flex-grow: 1;
+  span {
+    margin-left: 3px;
+  }
+}
