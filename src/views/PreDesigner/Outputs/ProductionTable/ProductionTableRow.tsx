@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React from "react";
+import { BiPencil } from "react-icons/bi";
 import { useRecoilState } from "recoil";
 import { PerMin } from "../../../../components/PerMin/PerMin";
 import { getRecipeName } from "../../../../data/getRecipeName";
@@ -7,6 +8,7 @@ import { currentModal } from "../../../../state/modal";
 import { selectedRecipe } from "../../../../state/recipe";
 import { RecipePart, recipePartReadable } from "../../../../types/Recipe";
 import { SelectRecipeModal } from "../../DesignConfiguration/SelectRecipeModal/SelectRecipeModal";
+import "./ProductionTableRow.scss";
 interface Props {
   part: RecipePart;
   perMin: number;
@@ -41,9 +43,12 @@ export const ProductionTableRow: React.FC<Props> = ({
         <PerMin perMin={perMin} />
       </td>
       <td>
-        <span className="Link" onClick={openModal}>
-          {getRecipeName(recipe)}
-        </span>
+        <div className="EditRow">
+          <span className="Link" onClick={openModal}>
+            {getRecipeName(recipe)}
+          </span>
+          <BiPencil onClick={openModal} className="EditPencil" />
+        </div>
       </td>
     </tr>
   );

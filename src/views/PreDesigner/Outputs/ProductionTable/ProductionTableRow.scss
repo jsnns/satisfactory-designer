@@ -1,0 +1,16 @@
+@import "../../../../styles/colors.scss";
+
+.ProductionTable {
+  .Link,
+  .EditPencil {
+    text-decoration: underline;
+    color: lighten($orange, 10%);
+    cursor: pointer;
+  }
+
+  .EditRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
