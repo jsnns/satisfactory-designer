@@ -1,3 +1,14 @@
 .TreeView {
   padding-right: 25px;
+
+  li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &.finished {
+      opacity: 0.25;
+    }
+  }
 }

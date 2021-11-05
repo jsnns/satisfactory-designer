@@ -7,6 +7,7 @@ import "./Recipe.scss";
 export const DescribeRecipe: React.FC<{ chain: RecipeChain }> = ({ chain }) => {
   return (
     <div className="DescribeRecipe">
+      <PartIcon part={chain.recipe.output.part} />
       <div className="RowBody">
         {recipePartReadable(chain.recipe.output.part)}
         <PerMin perMin={chain.recipe.output.perMin * chain.machinesNeeded} />
@@ -21,7 +22,6 @@ export const DescribeRecipe: React.FC<{ chain: RecipeChain }> = ({ chain }) => {
           %
         </span>
       </div>
-      <PartIcon part={chain.recipe.output.part} />
     </div>
   );
 };

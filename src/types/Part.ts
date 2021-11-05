@@ -86,7 +86,7 @@ export const partTypeReadable: {
   industrial_beam: "Industrial Beam",
   iron_plate: "Iron Plate",
   modular_frame: "Modular Frame",
-  reinforced_plate: "reinforced Plate",
+  reinforced_plate: "Reinforced Plate",
   screw: "Screw",
   caterium_ingot: "Caterium Ingot",
   circuit_board: "Circut Board",
