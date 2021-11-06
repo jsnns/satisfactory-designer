@@ -379,12 +379,20 @@ export const recipeBook: OptionalRecipeBook = {
   rotor: {
     machine: "assembler",
     inputs: [
-      { part: "iron_rod", perMin: 5 },
-      { part: "screw", perMin: 25 },
+      { part: "iron_rod", perMin: 20 },
+      { part: "screw", perMin: 100 },
     ],
     output: {
       part: "rotor",
       perMin: 4,
+    },
+  },
+  quartz_crystal: {
+    machine: "constructor",
+    inputs: [{ part: "quartz", perMin: 37.5 }],
+    output: {
+      part: "quartz_crystal",
+      perMin: 22.5,
     },
   },
   oil: RawResource("oil"),
