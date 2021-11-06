@@ -376,6 +376,17 @@ export const recipeBook: OptionalRecipeBook = {
     inputs: [{ part: "ficsmas_gift", perMin: 5 }],
     output: { part: "blue_ficsmas_ornament", perMin: 10 },
   },
+  rotor: {
+    machine: "assembler",
+    inputs: [
+      { part: "iron_rod", perMin: 5 },
+      { part: "screw", perMin: 25 },
+    ],
+    output: {
+      part: "rotor",
+      perMin: 4,
+    },
+  },
   oil: RawResource("oil"),
   water: RawResource("water"),
   caterium: RawResource("caterium"),
