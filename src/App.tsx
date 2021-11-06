@@ -32,7 +32,7 @@ function App() {
             schematic.enabledInputResources.length >
             0 && (
             <a
-              href={`https://app.satisfactorydesigner.com/?schematic=${serializeSchematic(
+              href={`https://satisfactorydesigner.com/?schematic=${serializeSchematic(
                 schematic
               )}`}
               className="Button Primary"
