@@ -4,7 +4,7 @@ $spacing: 5px;
 
 .Designer-- {
   display: flex;
-  width: 100vw;
+  max-width: 100vw;
   height: 100%;
   flex-grow: 1;
   flex-direction: row;
@@ -12,6 +12,7 @@ $spacing: 5px;
   box-sizing: border-box;
   background-color: $gray900;
   justify-content: space-between;
+  gap: ($spacing * 3);
 
   .Center-- {
     display: flex;
@@ -29,9 +30,10 @@ $spacing: 5px;
   .Outputs-Container,
   .Center-- {
     display: flex;
-    margin: $spacing;
-    min-height: 100%;
+    flex-direction: column;
     flex-grow: 1;
+    min-height: 100%;
+    width: 100%;
   }
 
   .Preview-Container {

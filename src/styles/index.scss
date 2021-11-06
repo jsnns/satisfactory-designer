@@ -24,3 +24,20 @@ button {
   user-select: none;
   cursor: pointer;
 }
+
+*::-webkit-scrollbar {
+  width: 6px; /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.0005); /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.05); /* color of the scroll thumb */
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-corner {
+  background-color: rgba(0, 0, 0, 0.025);
+}
